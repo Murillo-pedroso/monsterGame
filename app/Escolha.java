@@ -1,103 +1,89 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Escolha {
-    public void EscolhaMonstro() {
+    public void escolhaMonstro() {
 
-        int escolhaJogadorUm = 0;   
-        int controleEscolhaJogadorUm = 1;
-        int acumuladorDeErro = 0;
-        int acumuladorDeErroNaListagem = 0;
-        String armazenaListagem[] = new String[3];
+        int escolhaJogadorUm = 0;            
+        int error = 0;
+        int errorRepeteMonstro = 0;
+        String escolhaJogadorUmStr = ""; 
+        
+        
 
         ArrayList<String> percorreListagemDeMonstros = new ArrayList();
 
-        Scanner leitura = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
 
-        do {
-            do {
-                System.out.println("Faça sua " + controleEscolhaJogadorUm +"ª escolha\n");
-                System.out.printf("RESPOSTA: ");
-
-                escolhaJogadorUm = leitura.nextInt();
-                do {
-                    switch (escolhaJogadorUm) {
-                        case 1:
-                            System.out.println("Beholder\n");
-
-                            percorreListagemDeMonstros.add("Beholder");
-
-                            break;
-
-                        case 2:
-                            System.out.println("Mimico\n");
-
-                            percorreListagemDeMonstros.add("Mimico");
-
-                            break;
-                        
-                        case 3:
-                            System.out.println("Lich\n");
-
-                            percorreListagemDeMonstros.add("Lich");
-
-                            break;
-                        
-                        case 4:
-                            System.out.println("Drow\n");
-
-                            percorreListagemDeMonstros.add("Drow");
-
-                            break;
-
-                        case 5:
-                            System.out.println("Tarrasque\n");
-
-                            percorreListagemDeMonstros.add("Tarrasque");
-
-                            break;
-
-                        case 6:
-                            System.out.println("Female\n");
-                
-                            percorreListagemDeMonstros.add("Female");
-
-                            break;
-
-                        default:
-                            do {
-                                System.out.println("Opção não encontrada, digite novamente\n");
-                                System.out.println("RESPOSTA: ");
-
-                                escolhaJogadorUm = leitura.nextInt();
-
-                                if (escolhaJogadorUm < 1 || escolhaJogadorUm > 6)
-                                    acumuladorDeErro++;
-                                
-
-                                System.out.println("\n");  
-
-                            } while (escolhaJogadorUm < 1 || escolhaJogadorUm > 6);
-
-                            break;
-                        
-                }
-                } while ();
-
-                armazenaListagem[0] = percorreListagemDeMonstros.get(0);
-                controleEscolhaJogadorUm++;
-                
-            } while (controleEscolhaJogadorUm <= 3);
+        for (int i = 0; i < 3; i++) {
             
-            System.out.println(armazenaListagem[0]);
-            System.out.println(armazenaListagem[1]);
-            System.out.println(armazenaListagem[2]);
+            do{
+                errorRepeteMonstro = 0;
+                
+                do{
+                    error = 0;
+                    System.out.println("Faça sua " +(i+1)+"ª escolha\n");
+                    escolhaJogadorUm = scan.nextInt();
+                    
+                    if(escolhaJogadorUm == 1){
+                        
+                        escolhaJogadorUmStr = "beholder";
+                        
+                    }else if(escolhaJogadorUm == 2){
+                        escolhaJogadorUmStr = "mimico";
+                        
+                    }else if(escolhaJogadorUm == 3){
+                        escolhaJogadorUmStr = "lich";
+                    
 
-            //Print abaixo somente para teste, desconsiderar na versão final do código.
-            System.out.println(percorreListagemDeMonstros);
+                    }else if(escolhaJogadorUm == 4){
+                        escolhaJogadorUmStr = "drow";
+                        
 
-        } while(false);
+                    }else if(escolhaJogadorUm == 5){
+                        escolhaJogadorUmStr = "tarrasque";
+                        
+
+                    }else if(escolhaJogadorUm == 6){
+                        escolhaJogadorUmStr = "female";
+                        
+
+                    }else{
+                        System.out.println("Opção inválida, escolha outro...\n");
+                        error = 1;
+
+                    }
+                }while(error == 1);
+                
+                if( i == 0 ){
+
+                    percorreListagemDeMonstros.add(escolhaJogadorUmStr);
+                   
+                    
+                }else{  
+                    if (escolhaJogadorUmStr == percorreListagemDeMonstros.get(i-1) ) {
+                        System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
+                        errorRepeteMonstro = 1;
+                    }else{
+                        percorreListagemDeMonstros.add(escolhaJogadorUmStr);
+                        
+                    }
+                }
+
+                if(i == 2){
+                    if (escolhaJogadorUmStr == percorreListagemDeMonstros.get(i-2) ) {
+                        System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
+                        errorRepeteMonstro = 1;
+                    }else{
+                        percorreListagemDeMonstros.add(escolhaJogadorUmStr);
+                        
+                    }
+
+                }
+            }while(errorRepeteMonstro == 1);
+            
+        }
 
     }
 }

@@ -39,7 +39,7 @@ public class App {
             Tarrasque.Imprime();
             Female.Imprime();
 
-            verificaEscolhaDoJogador.EscolhaMonstro();
+            verificaEscolhaDoJogador.escolhaMonstro();
 
             /* 
             Comentários escritos abaixo para facilitar testes,
