@@ -115,6 +115,38 @@ public class Escolha {
             System.out.println(armazenaListagem[1]);
             System.out.println(armazenaListagem[2]);
 
+<<<<<<< Updated upstream
+=======
+            do{
+                if (armazenaListagem[1] == armazenaListagem[0]) {
+                    System.out.println("Monstro já escolhido. Por favor escolha outro monstro!\n");
+                    System.out.println("RESPOSTA: ");
+
+                    armazenaListagem[1] = "0";
+
+                    escolhaJogadorUm = leitura.nextInt();
+                }
+
+                if (armazenaListagem[2] == armazenaListagem[0]) {
+                    System.out.println("Monstro já escolhido. Por favor escolha outro monstro!\n");
+                    System.out.println("RESPOSTA: ");
+                    
+                    armazenaListagem[2] = "0";
+
+                    escolhaJogadorUm = leitura.nextInt();
+                }
+                
+                if (armazenaListagem[2] == armazenaListagem[1]) {
+                    System.out.println("Monstro já escolhido. Por favor escolha outro monstro!\n");
+                    System.out.println("RESPOSTA: ");
+
+                    armazenaListagem[2] = "0";
+
+                    escolhaJogadorUm = leitura.nextInt();
+                }
+            } while (false);
+        
+>>>>>>> Stashed changes
             //Print abaixo somente para teste, desconsiderar na versão final do código.
             System.out.println(percorreListagemDeMonstros);
 
