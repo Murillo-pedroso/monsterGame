@@ -4,16 +4,29 @@ public class App {
     public static void main(String[] args){
         
         int resposta;
+        Ataque fireBlast = new Ataque("Fire Blast", TipoElemento.FOGO, 5, 999);
+        Ataque overheat = new Ataque("Overheat", TipoElemento.FOGO, 10, 5);
+        Ataque sendAttack = new Ataque("Sand-attack", TipoElemento.TERRA, 10, 999);
+        Ataque earthquake = new Ataque("Earthquake", TipoElemento.TERRA, 15, 5);
+        Ataque waterGun = new Ataque("Water Gun", TipoElemento.AGUA, 7, 999);
+        Ataque aquaTail = new Ataque("Aqua Tail", TipoElemento.AGUA, 12, 5);
+        Ataque spark = new Ataque("Spark", TipoElemento.ELETRICO, 5, 999);
+        Ataque shockWave = new Ataque("Shock Wave", TipoElemento.ELETRICO, 10, 5);
+        Ataque mist = new Ataque("Mist", TipoElemento.GELO, 5, 999);
+        Ataque icyWind = new Ataque("Icy Wind", TipoElemento.GELO, 10, 5);
+        Ataque machPunch = new Ataque("Mach Punch", TipoElemento.LUTADOR, 5, 999);
+        Ataque hammerArm = new Ataque("Hammer Arm", TipoElemento.LUTADOR, 10, 5);
+
 
         Scanner leitura = new Scanner(System.in);
 
-        Monstro Beholder = new Monstro(1, "Beholder","fogo", 65, 63, 45, 45);
-        Monstro Mimico = new Monstro(2, "Mimico", "grama", 45, 45, 55, 63);
-        Monstro Lich = new Monstro(3, "Lich", "agua", 55, 55, 45, 45);
-        Monstro Drow = new Monstro(4, "Drow", "gelo", 65, 63, 45, 45);
-        Monstro Tarrasque = new Monstro(5, "Tarrasque", "agua", 65, 63, 45, 45);
-        Monstro Female = new Monstro(6, "Female", "fogo", 65, 63, 45, 44);
-
+        Monstro Beholder =  new Monstro(1, "Beholder",TipoElemento.FOGO, 65, 63, 45, 45, fireBlast, overheat);      
+        Monstro Mimico =    new Monstro(2, "Mimico", TipoElemento.TERRA, 45, 45, 55, 63, sendAttack, earthquake);        
+        Monstro Lich =      new Monstro(3, "Lich", TipoElemento.AGUA, 55, 55, 45, 45, waterGun, aquaTail);
+        Monstro Drow =      new Monstro(4, "Drow", TipoElemento.ELETRICO, 65, 63, 45, 45, spark, shockWave);
+        Monstro Tarrasque = new Monstro(5, "Tarrasque", TipoElemento.GELO, 65, 63, 45, 45, mist, icyWind);
+        Monstro Female =    new Monstro(6, "Female", TipoElemento.LUTADOR, 65, 63, 45, 44, machPunch, hammerArm);
+        
         Escolha verificaEscolhaDoJogador = new Escolha();
 
         Menu menuInteracaoComUsuario = new Menu();
