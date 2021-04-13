@@ -22,7 +22,7 @@ public class Menu {
 
         switch (navegacaoMenu) {
 
-            case 1:/*
+            case 1:
                 System.out.println("Para jogar partida Arcade você deverá escolher seus monstros");
                 System.out.println("Você confirma a escolha e quer se juntar aos Monsters Gamers?\n");
                 
@@ -31,7 +31,7 @@ public class Menu {
                 System.out.println("Resposta: ");
 
                 navegacaoMenu = leitura.nextInt();
-                */
+                
                 break;
             case 2: 
                 break;
