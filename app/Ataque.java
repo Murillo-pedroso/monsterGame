@@ -21,5 +21,4 @@ public class Ataque {
     public int getEnergia(){
         return energia;
     }
-  
 }

@@ -17,7 +17,6 @@ public class App {
         Ataque machPunch = new Ataque("Mach Punch", TipoElemento.LUTADOR, 5, 999);
         Ataque hammerArm = new Ataque("Hammer Arm", TipoElemento.LUTADOR, 10, 5);
 
-
         Scanner leitura = new Scanner(System.in);
 
         Monstro Beholder =  new Monstro(1, "Beholder",TipoElemento.FOGO, 65, 63, 45, 45, fireBlast, overheat);      

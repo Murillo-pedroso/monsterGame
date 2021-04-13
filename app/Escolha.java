@@ -21,96 +21,75 @@ public class Escolha {
                 System.out.printf("RESPOSTA: ");
 
                 escolhaJogadorUm = leitura.nextInt();
+                do {
+                    switch (escolhaJogadorUm) {
+                        case 1:
+                            System.out.println("Beholder\n");
 
-                switch (escolhaJogadorUm) {
-                    case 1:
-                        System.out.println("Beholder\n");
+                            percorreListagemDeMonstros.add("Beholder");
 
-                        percorreListagemDeMonstros.add("Beholder");
+                            break;
 
-                        break;
+                        case 2:
+                            System.out.println("Mimico\n");
 
-                    case 2:
-                        System.out.println("Mimico\n");
+                            percorreListagemDeMonstros.add("Mimico");
 
-                        percorreListagemDeMonstros.add("Mimico");
+                            break;
+                        
+                        case 3:
+                            System.out.println("Lich\n");
 
-                        break;
-                    
-                    case 3:
-                        System.out.println("Lich\n");
+                            percorreListagemDeMonstros.add("Lich");
 
-                        percorreListagemDeMonstros.add("Lich");
+                            break;
+                        
+                        case 4:
+                            System.out.println("Drow\n");
 
-                        break;
-                    
-                    case 4:
-                        System.out.println("Drow\n");
+                            percorreListagemDeMonstros.add("Drow");
 
-                        percorreListagemDeMonstros.add("Drow");
+                            break;
 
-                        break;
+                        case 5:
+                            System.out.println("Tarrasque\n");
 
-                    case 5:
-                        System.out.println("Tarrasque\n");
+                            percorreListagemDeMonstros.add("Tarrasque");
 
-                        percorreListagemDeMonstros.add("Tarrasque");
+                            break;
 
-                        break;
+                        case 6:
+                            System.out.println("Female\n");
+                
+                            percorreListagemDeMonstros.add("Female");
 
-                    case 6:
-                        System.out.println("Female\n");
-            
-                        percorreListagemDeMonstros.add("Female");
+                            break;
 
-                        break;
+                        default:
+                            do {
+                                System.out.println("Opção não encontrada, digite novamente\n");
+                                System.out.println("RESPOSTA: ");
 
-                    default:
-                        do {
-                            System.out.println("Opção não encontrada, digite novamente\n");
-                            System.out.println("RESPOSTA: ");
+                                escolhaJogadorUm = leitura.nextInt();
 
-                            escolhaJogadorUm = leitura.nextInt();
+                                if (escolhaJogadorUm < 1 || escolhaJogadorUm > 6)
+                                    acumuladorDeErro++;
+                                
 
-                            if (escolhaJogadorUm < 1 || escolhaJogadorUm > 6)
-                                acumuladorDeErro++;
-                            
+                                System.out.println("\n");  
 
-                            System.out.println("\n");  
+                            } while (escolhaJogadorUm < 1 || escolhaJogadorUm > 6);
 
-                        } while (escolhaJogadorUm < 1 || escolhaJogadorUm > 6);
-
-                        break;
-                    
+                            break;
+                        
                 }
+                } while ();
 
+                armazenaListagem[0] = percorreListagemDeMonstros.get(0);
                 controleEscolhaJogadorUm++;
                 
             } while (controleEscolhaJogadorUm <= 3);
             
-            armazenaListagem[0] = percorreListagemDeMonstros.get(0);
-
-            do {
-                if (armazenaListagem[1] != armazenaListagem[0]) 
-                    armazenaListagem[1] = percorreListagemDeMonstros.get(1);
-                
-                if (armazenaListagem[2] != armazenaListagem[0]) { 
-                    armazenaListagem[2] = percorreListagemDeMonstros.get(2);
-                }
-                
-                if (armazenaListagem[2] != armazenaListagem[1]) { 
-                    armazenaListagem[2] = percorreListagemDeMonstros.get(2);
-                }
-
-                else {
-                    System.out.println("Monstro já escolhido, escolha outro monstro\n");
-                    System.out.println("RESPOSTA: ");
-                    
-                    escolhaJogadorUm = leitura.nextInt();
-                }
-                
-            } while (acumuladorDeErroNaListagem == 0);
-
             System.out.println(armazenaListagem[0]);
             System.out.println(armazenaListagem[1]);
             System.out.println(armazenaListagem[2]);
