@@ -1,3 +1,4 @@
+
 public class Ataque {
     private String nome;
     private TipoElemento tipo;
