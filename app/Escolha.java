@@ -7,6 +7,7 @@ public class Escolha {
         int escolhaJogadorUm = 0;   
         int controleEscolhaJogadorUm = 1;
         int acumuladorDeErro = 0;
+        int acumuladorDeErroNaListagem = 0;
         String armazenaListagem[] = new String[3];
 
         ArrayList<String> percorreListagemDeMonstros = new ArrayList();
@@ -89,47 +90,31 @@ public class Escolha {
             
             armazenaListagem[0] = percorreListagemDeMonstros.get(0);
 
-            if (armazenaListagem[1] != armazenaListagem[0]) 
-                armazenaListagem[1] = percorreListagemDeMonstros.get(1);
+            do {
+                if (armazenaListagem[1] != armazenaListagem[0]) 
+                    armazenaListagem[1] = percorreListagemDeMonstros.get(1);
+                
+                if (armazenaListagem[2] != armazenaListagem[0]) { 
+                    armazenaListagem[2] = percorreListagemDeMonstros.get(2);
+                }
+                
+                if (armazenaListagem[2] != armazenaListagem[1]) { 
+                    armazenaListagem[2] = percorreListagemDeMonstros.get(2);
+                }
 
-            if (armazenaListagem[2] != armazenaListagem[0]) 
-                armazenaListagem[2] = percorreListagemDeMonstros.get(2);
-
-            if (armazenaListagem[2] != armazenaListagem[1]) 
-                armazenaListagem[2] = percorreListagemDeMonstros.get(2);
-            
+                else {
+                    System.out.println("Monstro já escolhido, escolha outro monstro\n");
+                    System.out.println("RESPOSTA: ");
+                    
+                    escolhaJogadorUm = leitura.nextInt();
+                }
+                
+            } while (acumuladorDeErroNaListagem == 0);
 
             System.out.println(armazenaListagem[0]);
             System.out.println(armazenaListagem[1]);
             System.out.println(armazenaListagem[2]);
 
-            if (armazenaListagem[1] == armazenaListagem[0]) {
-                System.out.println("Monstro já escolhido. Por favor escolha outro monstro!\n");
-                System.out.println("RESPOSTA: ");
-
-                armazenaListagem[1] = "0";
-
-                escolhaJogadorUm = leitura.nextInt();
-            }
-
-            if (armazenaListagem[2] == armazenaListagem[0]) {
-                System.out.println("Monstro já escolhido. Por favor escolha outro monstro!\n");
-                System.out.println("RESPOSTA: ");
-                
-                armazenaListagem[2] = "0";
-
-                escolhaJogadorUm = leitura.nextInt();
-            }
-            
-            if (armazenaListagem[2] == armazenaListagem[1]) {
-                System.out.println("Monstro já escolhido. Por favor escolha outro monstro!\n");
-                System.out.println("RESPOSTA: ");
-
-                armazenaListagem[2] = "0";
-
-                escolhaJogadorUm = leitura.nextInt();
-            }
-        
             //Print abaixo somente para teste, desconsiderar na versão final do código.
             System.out.println(percorreListagemDeMonstros);
 
