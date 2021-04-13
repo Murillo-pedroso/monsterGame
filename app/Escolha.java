@@ -67,7 +67,7 @@ public class Escolha {
                     percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);
                     
                 }
-                else{  
+                else if(controleEscolhaJogadorUm == 1){  
                     if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 1) ) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
                         System.out.println("RESPOSTA: ");
@@ -77,10 +77,8 @@ public class Escolha {
                     else
                         percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);    
                     
-                }
-
-                if(controleEscolhaJogadorUm == 2){
-                    if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 2)) {
+                }else{
+                    if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 1) || escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 2)) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
                         System.out.println("RESPOSTA: ");
 
@@ -94,7 +92,7 @@ public class Escolha {
 
         }
 
-        percorreListagemDeJogadorUm.remove(3);
+        
         System.out.println(percorreListagemDeJogadorUm);
         
 
@@ -144,7 +142,7 @@ public class Escolha {
                     percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);
                     
                 }
-                else{  
+                else if(controleEscolhaJogadorDois == 1){  
                     if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 1) ) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
                         System.out.println("RESPOSTA: ");
@@ -154,10 +152,8 @@ public class Escolha {
                     else
                         percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);    
                     
-                }
-
-                if(controleEscolhaJogadorDois == 2){
-                    if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 2)) {
+                }else{
+                    if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 1) || escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 2)) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
                         System.out.println("RESPOSTA: ");
 
@@ -171,7 +167,7 @@ public class Escolha {
 
             
         }
-        percorreListagemDeJogadorDois.remove(3);
+        
         System.out.println(percorreListagemDeJogadorDois);
     }
 }
