@@ -36,6 +36,8 @@ public class Menu {
             case 2: 
                 break;
 
+            case 3: 
+                break;
             default:
                 do {
                     System.out.println("Opcao não encontrada, digite novamente");

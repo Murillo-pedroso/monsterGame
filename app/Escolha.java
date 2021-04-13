@@ -6,84 +6,172 @@ public class Escolha {
 
         int escolhaJogadorUm = 0;            
         int error = 0;
-        int errorRepeteMonstro = 0;
+        int errorRepetePrimeiraEscolha = 0;
         String escolhaJogadorUmStr = ""; 
+
+        int escolhaJogadorDois = 0;
+        int errorRepeteSegundaEscolha = 0;
+        String escolhaJogadorDoisStr = "";
         
         
+        ArrayList<String> percorreListagemDeJogadorUm = new ArrayList();
+        ArrayList<String> percorreListagemDeJogadorDois = new ArrayList();
 
-        ArrayList<String> percorreListagemDeMonstros = new ArrayList();
-
-        Scanner scan = new Scanner(System.in);
+        Scanner leituraResposta = new Scanner(System.in);
 
 
-        for (int i = 0; i < 3; i++) {
+
+        System.out.println(">>> Atenção jogador 1. Faça suas escolhas! <<<");
+
+        for (int controleEscolhaJogadorUm = 0; controleEscolhaJogadorUm < 3; controleEscolhaJogadorUm++) {
             
-            do{
-                errorRepeteMonstro = 0;
+            do {
+                errorRepetePrimeiraEscolha = 0;
                 
-                do{
+                do {
                     error = 0;
-                    System.out.println("Faça sua " +(i+1)+"ª escolha\n");
-                    escolhaJogadorUm = scan.nextInt();
+
+                    System.out.println("Faça sua " + (controleEscolhaJogadorUm + 1) +"ª escolha\n");
+                    System.out.println("RESPOSTA: ");
+
+                    escolhaJogadorUm = leituraResposta.nextInt();
                     
-                    if(escolhaJogadorUm == 1){
-                        
+                    if (escolhaJogadorUm == 1)                         
                         escolhaJogadorUmStr = "beholder";
                         
-                    }else if(escolhaJogadorUm == 2){
+                    else if (escolhaJogadorUm == 2) 
                         escolhaJogadorUmStr = "mimico";
                         
-                    }else if(escolhaJogadorUm == 3){
+                    else if (escolhaJogadorUm == 3) 
                         escolhaJogadorUmStr = "lich";
                     
-
-                    }else if(escolhaJogadorUm == 4){
+                    else if (escolhaJogadorUm == 4) 
                         escolhaJogadorUmStr = "drow";
                         
-
-                    }else if(escolhaJogadorUm == 5){
+                    else if (escolhaJogadorUm == 5) 
                         escolhaJogadorUmStr = "tarrasque";
                         
-
-                    }else if(escolhaJogadorUm == 6){
+                    
+                    else if (escolhaJogadorUm == 6) 
                         escolhaJogadorUmStr = "female";
                         
-
-                    }else{
-                        System.out.println("Opção inválida, escolha outro...\n");
+                    else{
+                        System.out.println("Monstro não existente. Escolha outro monstro: \n");
                         error = 1;
-
                     }
-                }while(error == 1);
+
+                } while (error == 1);
                 
-                if( i == 0 ){
+                if (controleEscolhaJogadorUm == 0) {
 
-                    percorreListagemDeMonstros.add(escolhaJogadorUmStr);
-                   
+                    percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);
                     
-                }else{  
-                    if (escolhaJogadorUmStr == percorreListagemDeMonstros.get(i-1) ) {
+                }
+                else{  
+                    if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 1) ) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
-                        errorRepeteMonstro = 1;
-                    }else{
-                        percorreListagemDeMonstros.add(escolhaJogadorUmStr);
+                        System.out.println("RESPOSTA: ");
                         
+                        errorRepetePrimeiraEscolha = 1;
                     }
+                    else
+                        percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);    
+                    
                 }
 
-                if(i == 2){
-                    if (escolhaJogadorUmStr == percorreListagemDeMonstros.get(i-2) ) {
+                if(controleEscolhaJogadorUm == 2){
+                    if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 2)) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
-                        errorRepeteMonstro = 1;
-                    }else{
-                        percorreListagemDeMonstros.add(escolhaJogadorUmStr);
-                        
-                    }
+                        System.out.println("RESPOSTA: ");
 
+                        errorRepetePrimeiraEscolha = 1;
+                    }
+                    else 
+                        percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);
+                        
                 }
-            }while(errorRepeteMonstro == 1);
-            
+            } while (errorRepetePrimeiraEscolha == 1);
+
         }
 
+        percorreListagemDeJogadorUm.remove(3);
+        System.out.println(percorreListagemDeJogadorUm);
+        
+
+        System.out.println("\n>>> Atenção jogador 2. Faça suas escolhas! <<<");
+
+        for (int controleEscolhaJogadorDois = 0; controleEscolhaJogadorDois < 3; controleEscolhaJogadorDois++) {
+            
+            do {
+                errorRepeteSegundaEscolha = 0;
+                
+                do {
+                    error = 0;
+
+                    System.out.println("Faça sua " + (controleEscolhaJogadorDois + 1) +"ª escolha\n");
+                    System.out.println("RESPOSTA: ");
+
+                    escolhaJogadorDois = leituraResposta.nextInt();
+                    
+                    if (escolhaJogadorDois == 1)                         
+                        escolhaJogadorDoisStr = "beholder";
+                        
+                    else if (escolhaJogadorDois == 2) 
+                        escolhaJogadorDoisStr = "mimico";
+                        
+                    else if (escolhaJogadorDois == 3) 
+                        escolhaJogadorDoisStr = "lich";
+                    
+                    else if (escolhaJogadorDois == 4) 
+                        escolhaJogadorDoisStr = "drow";
+                        
+                    else if (escolhaJogadorDois == 5) 
+                        escolhaJogadorDoisStr = "tarrasque";
+                        
+                    
+                    else if (escolhaJogadorDois == 6) 
+                        escolhaJogadorDoisStr = "female";
+                        
+                    else{
+                        System.out.println("Monstro não existente. Escolha outro monstro: \n");
+                        error = 1;
+                    }
+
+                } while (error == 1);
+                
+                if (controleEscolhaJogadorDois == 0) {
+
+                    percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);
+                    
+                }
+                else{  
+                    if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 1) ) {
+                        System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
+                        System.out.println("RESPOSTA: ");
+                        
+                        errorRepeteSegundaEscolha = 1;
+                    }
+                    else
+                        percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);    
+                    
+                }
+
+                if(controleEscolhaJogadorDois == 2){
+                    if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 2)) {
+                        System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
+                        System.out.println("RESPOSTA: ");
+
+                        errorRepeteSegundaEscolha = 1;
+                    }
+                    else 
+                        percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);
+                        
+                }
+            } while (errorRepeteSegundaEscolha == 1);
+
+            
+        }
+        percorreListagemDeJogadorDois.remove(3);
+        System.out.println(percorreListagemDeJogadorDois);
     }
 }

@@ -19,12 +19,12 @@ public class App {
 
         Scanner leitura = new Scanner(System.in);
 
-        Monstro Beholder =  new Monstro(1, "Beholder",TipoElemento.FOGO, 65, 63, 45, 45, fireBlast, overheat);      
-        Monstro Mimico =    new Monstro(2, "Mimico", TipoElemento.TERRA, 45, 45, 55, 63, sendAttack, earthquake);        
-        Monstro Lich =      new Monstro(3, "Lich", TipoElemento.AGUA, 55, 55, 45, 45, waterGun, aquaTail);
-        Monstro Drow =      new Monstro(4, "Drow", TipoElemento.ELETRICO, 65, 63, 45, 45, spark, shockWave);
+        Monstro Beholder = new Monstro(1, "Beholder",TipoElemento.FOGO, 65, 63, 45, 45, fireBlast, overheat);      
+        Monstro Mimico = new Monstro(2, "Mimico", TipoElemento.TERRA, 45, 45, 55, 63, sendAttack, earthquake);        
+        Monstro Lich = new Monstro(3, "Lich", TipoElemento.AGUA, 55, 55, 45, 45, waterGun, aquaTail);
+        Monstro Drow = new Monstro(4, "Drow", TipoElemento.ELETRICO, 65, 63, 45, 45, spark, shockWave);
         Monstro Tarrasque = new Monstro(5, "Tarrasque", TipoElemento.GELO, 65, 63, 45, 45, mist, icyWind);
-        Monstro Female =    new Monstro(6, "Female", TipoElemento.LUTADOR, 65, 63, 45, 44, machPunch, hammerArm);
+        Monstro Female = new Monstro(6, "Female", TipoElemento.LUTADOR, 65, 63, 45, 44, machPunch, hammerArm);
         
         Escolha verificaEscolhaDoJogador = new Escolha();
 
@@ -105,7 +105,7 @@ public class App {
         */
         else if (resposta == 3) {
             System.out.println("Sessão encerrada Monster Gamer");
-            System.out.println("Até a próxima");
+            System.out.println("Até a próxima!");
         }
 
         
