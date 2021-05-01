@@ -13,13 +13,10 @@ public class Escolha {
         int errorRepeteSegundaEscolha = 0;
         String escolhaJogadorDoisStr = "";
         
-        
         ArrayList<String> percorreListagemDeJogadorUm = new ArrayList();
         ArrayList<String> percorreListagemDeJogadorDois = new ArrayList();
 
         Scanner leituraResposta = new Scanner(System.in);
-
-
 
         System.out.println(">>> Atenção jogador 1. Faça suas escolhas! <<<");
 
@@ -92,9 +89,7 @@ public class Escolha {
 
         }
 
-        
-        System.out.println(percorreListagemDeJogadorUm);
-        
+        System.out.println(percorreListagemDeJogadorUm);        
 
         System.out.println("\n>>> Atenção jogador 2. Faça suas escolhas! <<<");
 
@@ -126,22 +121,18 @@ public class Escolha {
                     else if (escolhaJogadorDois == 5) 
                         escolhaJogadorDoisStr = "tarrasque";
                         
-                    
                     else if (escolhaJogadorDois == 6) 
                         escolhaJogadorDoisStr = "female";
-                        
-                    else{
+
+                    else
                         System.out.println("Monstro não existente. Escolha outro monstro: \n");
                         error = 1;
-                    }
 
                 } while (error == 1);
                 
-                if (controleEscolhaJogadorDois == 0) {
-
-                    percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);
-                    
-                }
+                if (controleEscolhaJogadorDois == 0) 
+                    percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);    
+                
                 else if(controleEscolhaJogadorDois == 1){  
                     if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 1) ) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
@@ -152,7 +143,8 @@ public class Escolha {
                     else
                         percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);    
                     
-                }else{
+                }
+                else {
                     if (escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 1) || escolhaJogadorDoisStr == percorreListagemDeJogadorDois.get(controleEscolhaJogadorDois - 2)) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
                         System.out.println("RESPOSTA: ");
@@ -161,13 +153,11 @@ public class Escolha {
                     }
                     else 
                         percorreListagemDeJogadorDois.add(escolhaJogadorDoisStr);
-                        
                 }
             } while (errorRepeteSegundaEscolha == 1);
-
-            
         }
-        
         System.out.println(percorreListagemDeJogadorDois);
+
+
     }
 }

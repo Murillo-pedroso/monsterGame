@@ -52,6 +52,7 @@ public class Menu {
                 break;
         }
 
+        leitura.close();
         return navegacaoMenu;
     }
 }

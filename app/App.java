@@ -61,8 +61,7 @@ public class App {
                     } while(resposta < 1 || resposta > 2);
 
                     break;
-            }
-            
+            }   
         }
 
         
@@ -77,12 +76,7 @@ public class App {
             System.out.println("\t 2- Jogar partida arcade!");
             System.out.println("\t 3- Sair\n");
 
-            
-            
-            if (resposta == 1) {
-
-            }
-            
+            System.out.println("Resposta: ");           
 
             if (resposta == 2) {
                 verificaEscolhaDoJogador.escolhaMonstro();
@@ -93,14 +87,12 @@ public class App {
                 System.out.println("Até a próxima");
             }
         }
-
         
         else if (resposta == 3) {
             System.out.println("Sessão encerrada Monster Gamer");
             System.out.println("Até a próxima!");
         }
 
-        
-
+        leitura.close();
     }
 }
