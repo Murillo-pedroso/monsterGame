@@ -25,13 +25,18 @@ public class Menu {
             case 1:
                 System.out.println("Para jogar partida Arcade você deverá escolher seus monstros");
                 System.out.println("Você confirma a escolha e quer se juntar aos Monsters Gamers?\n");
-                
                 System.out.println("1- Confirma  2- Desistir\n");
-                
                 System.out.println("Resposta: ");
-
                 navegacaoMenu = leitura.nextInt();
-                
+                if (navegacaoMenu == 1){
+                    System.out.println("Iniciando o jogo...!");
+                }
+                else if (navegacaoMenu == 2) { 
+                    System.out.println("Até a próxima jogador!");
+
+                    return 0;
+                }
+            
                 break;
             case 2: 
                 break;
@@ -52,7 +57,6 @@ public class Menu {
                 break;
         }
 
-        leitura.close();
         return navegacaoMenu;
     }
 }

@@ -39,8 +39,11 @@ public class App {
             Tarrasque.Imprime();
             Female.Imprime();
 
-            
             switch (resposta) {
+
+                case 0:
+                    System.out.println("Até a próxima jogador!");
+
                 case 1:
                     verificaEscolhaDoJogador.escolhaMonstro();
                     break;
@@ -72,20 +75,26 @@ public class App {
             System.out.println("3- O jogador 2 não tem desvantagem por ser 2\n");
 
             System.out.println("O que deseja fazer?");
-            System.out.println("\t 1- Voltar ao menu inicial");
-            System.out.println("\t 2- Jogar partida arcade!");
-            System.out.println("\t 3- Sair\n");
+            System.out.println("\t 1- Jogar partida arcade!");
+            System.out.println("\t 2- Sair\n");
 
-            System.out.println("Resposta: ");           
+            System.out.println("Resposta: ");       
+            resposta = leitura.nextInt();    
 
-            if (resposta == 2) {
+            if (resposta == 1) {
                 verificaEscolhaDoJogador.escolhaMonstro();
             }
 
-            else if (resposta == 3) {
+            else if (resposta == 2) {
                 System.out.println("Sessão encerrada Monster Gamer");
                 System.out.println("Até a próxima");
             }
+
+            do {
+                System.out.println("Opção não encontrada, digite novamente!");
+                System.out.println("Resposta: ");
+                resposta = leitura.nextInt();
+            } while (resposta < 1 || resposta > 2);
         }
         
         else if (resposta == 3) {

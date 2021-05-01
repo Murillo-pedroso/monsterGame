@@ -124,10 +124,10 @@ public class Escolha {
                     else if (escolhaJogadorDois == 6) 
                         escolhaJogadorDoisStr = "female";
 
-                    else
+                    else {
                         System.out.println("Monstro não existente. Escolha outro monstro: \n");
                         error = 1;
-
+                    }
                 } while (error == 1);
                 
                 if (controleEscolhaJogadorDois == 0) 
