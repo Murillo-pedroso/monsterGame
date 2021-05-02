@@ -59,11 +59,9 @@ public class Escolha {
 
                 } while (error == 1);
                 
-                if (controleEscolhaJogadorUm == 0) {
-
-                    percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);
-                    
-                }
+                if (controleEscolhaJogadorUm == 0) 
+                    percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);                    
+                
                 else if(controleEscolhaJogadorUm == 1){  
                     if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 1) ) {
                         System.out.println("\nVocê já selecionou esse monstro\nSelecione novamente, por favor\n");
@@ -156,8 +154,7 @@ public class Escolha {
                 }
             } while (errorRepeteSegundaEscolha == 1);
         }
+        
         System.out.println(percorreListagemDeJogadorDois);
-
-
     }
 }
