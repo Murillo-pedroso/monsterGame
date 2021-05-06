@@ -43,6 +43,7 @@ public class App {
 
                 case 0:
                     System.out.println("Até a próxima jogador!");
+                    break;
 
                 case 1:
                     verificaEscolhaDoJogador.escolhaMonstro();
