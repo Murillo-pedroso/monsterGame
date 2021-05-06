@@ -14,4 +14,9 @@ private TipoElemento(int valor,String descricao) {
     this.descricao = descricao;
 }
 
+public int compareTo(String string) {
+    return 0;
+}
+
+
 }
