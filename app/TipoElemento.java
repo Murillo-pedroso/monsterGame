@@ -9,14 +9,14 @@ public enum TipoElemento {
     public int valor;
     public String descricao;
 
-private TipoElemento(int valor,String descricao) {
-    this.valor = valor;
-    this.descricao = descricao;
-}
+    private TipoElemento(int valor,String descricao) {
+        this.valor = valor;
+        this.descricao = descricao;
+    }
 
-public int compareTo(String string) {
-    return 0;
-}
+    public int compareTo(String string) {
+        return 0;
+    }
 
 
 }
