@@ -1,10 +1,17 @@
 public enum TipoElemento {
-    AGUA(1,"Agua"),
-    FOGO(2,"Fogo"),
-    TERRA(3,"Terra"),
-    LUTADOR(4,"Lutador"),
-    ELETRICO(5,"Eletrico"),
-    GELO(6,"Gelo");
+    AGUA(1,"AGUA"),
+    FOGO(2,"FOGO"),
+    TERRA(3,"TERRA"),
+    LUTADOR(4,"LUTADOR"),
+    SOMBRIO(5,"SOMBRIO"),
+    FANTASMA(6,"FANTASMA"),
+    DRAGAO(7,"DRAGAO"),
+    FADA(8,"FADA"),
+    PLANTA(9,"PLANTA"),
+    PSIQUICO(10,"PSIQUICO"),
+    NORMAL(11,"NORMAL"),
+    PEDRA(12,"PEDRA"),
+    NULO(13,"");
 
     public int valor;
     public String descricao;

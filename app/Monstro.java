@@ -1,34 +1,35 @@
 public class Monstro{
-    private int ID;
+    private int id;
     private String nome;
     private TipoElemento tipo;
+    private TipoElemento tipoSecundario;
     private int vida;
     private int forca;
     private int defesa;
     private int velocidade;
     private Ataque[] ataques;
+    private AtaqueCarregado ataqueCarregado;
     private int vidaMax;
-    //private Ataque ataquePrincipal;
-    //private Ataque ataqueSecundario;
+    
 
-    public Monstro(int ID, String nome, TipoElemento tipo, int vida, int forca,int defesa, int velocidade, //Ataque ataquePrincipal, Ataque ataqueSecundario, 
-                    Ataque[] listaAtaques){
-        this.ID = ID;
+    public Monstro(int id, String nome, TipoElemento tipo,TipoElemento tipoSecundario, int vida, int forca,int defesa, int velocidade, Ataque[] listaAtaques,AtaqueCarregado ataqueCarregado){
+        this.id = id;
         this.nome = nome;
         this.tipo = tipo;
+        this.tipoSecundario = tipoSecundario;
         this.vida = vida;
         this.forca = forca;
         this.defesa = defesa;
         this.velocidade = velocidade;
-        ataques = listaAtaques;
-        vidaMax = vida;
-        //this.ataquePrincipal = ataquePrincipal;
-        //this.ataqueSecundario = ataqueSecundario;
+        this.ataques = listaAtaques;
+        this.vidaMax = vida;
+        this.ataqueCarregado = ataqueCarregado;
+      
     }
-    public Monstro(int i, String string, TipoElemento fogo, int j, int k, int l, int m, Ataque fireBlast, Ataque overheat) {
+    public Monstro(int i, String string, TipoElemento fogo, TipoElemento nulo, int j, int k, int l, int m, Ataque fireBlast, Ataque overheat, Ataque mordida, AtaqueCarregado erupcaoDeFogo) {
     }
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
     public String getNome(){
 		return nome;

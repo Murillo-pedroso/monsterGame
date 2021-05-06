@@ -1,13 +1,14 @@
 public class Ataque {
     private String nome;
     private TipoElemento tipo;
-	private int forca;
-    private int energia;
-	
-	public Ataque(String nome,TipoElemento tipo, int dano, int energia){
+	private double dano;
+   
+   
+	public Ataque(String nome,TipoElemento tipo, double dano){
 		this.nome = nome;
         this.tipo = tipo;
-		this.forca = dano;
+		this.dano = dano;
+      
 	}
 	public String getNome(){
 		return nome;
@@ -15,10 +16,8 @@ public class Ataque {
     public TipoElemento getTipo(){
         return tipo;
     }
-    public int getDano(){
-        return forca;
+    public double getDano(){
+        return dano;
     }
-    public int getEnergia(){
-        return energia;
-    }
+   
 }
