@@ -2,23 +2,16 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Escolha {
-    public void escolhaMonstro() {
+    public void escolhaMonstro(Treinador treinador,Monstro listaMonstro) {
 
-        int escolhaJogadorUm = 0;            
+        int escolhaMonstro = 0;            
         int error = 0;
         int errorRepetePrimeiraEscolha = 0;
         String escolhaJogadorUmStr = ""; 
 
-        int escolhaJogadorDois = 0;
-        int errorRepeteSegundaEscolha = 0;
-        String escolhaJogadorDoisStr = "";
-        
-        ArrayList<String> percorreListagemDeJogadorUm = new ArrayList();
-        ArrayList<String> percorreListagemDeJogadorDois = new ArrayList();
-
         Scanner leituraResposta = new Scanner(System.in);
 
-        System.out.println(">>> Atenção jogador 1. Faça suas escolhas! <<<");
+        System.out.println(">>> Atenção treinador. Faça suas escolhas! <<<");
 
         for (int controleEscolhaJogadorUm = 0; controleEscolhaJogadorUm < 3; controleEscolhaJogadorUm++) {
             
@@ -27,40 +20,18 @@ public class Escolha {
                 
                 do {
                     error = 0;
-
+                    listaMonstro.imprime();
                     System.out.println("Faça sua " + (controleEscolhaJogadorUm + 1) +"ª escolha\n");
                     System.out.println("RESPOSTA: ");
 
-                    escolhaJogadorUm = leituraResposta.nextInt();
+                    escolhaMonstro = leituraResposta.nextInt();
                     
-                    if (escolhaJogadorUm == 1)                         
-                        escolhaJogadorUmStr = "beholder";
-                        
-                    else if (escolhaJogadorUm == 2) 
-                        escolhaJogadorUmStr = "mimico";
-                        
-                    else if (escolhaJogadorUm == 3) 
-                        escolhaJogadorUmStr = "lich";
-                    
-                    else if (escolhaJogadorUm == 4) 
-                        escolhaJogadorUmStr = "drow";
-                        
-                    else if (escolhaJogadorUm == 5) 
-                        escolhaJogadorUmStr = "tarrasque";
-                        
-                    
-                    else if (escolhaJogadorUm == 6) 
-                        escolhaJogadorUmStr = "female";
-                        
-                    else{
-                        System.out.println("Monstro não existente. Escolha outro monstro: \n");
-                        error = 1;
-                    }
+                   
 
                 } while (error == 1);
                 
                 if (controleEscolhaJogadorUm == 0) 
-                    percorreListagemDeJogadorUm.add(escolhaJogadorUmStr);                    
+                    treinador.setMonstro(controleEscolhaJogadorUm, monstro);                    
                 
                 else if(controleEscolhaJogadorUm == 1){  
                     if (escolhaJogadorUmStr == percorreListagemDeJogadorUm.get(controleEscolhaJogadorUm - 1) ) {

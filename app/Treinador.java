@@ -7,28 +7,34 @@ public class Treinador {
 
 	public Treinador() {
 
+		this.correu = false;
+		this.derrotado = false;
 	}
 
 	public Treinador(String nome, Monstro[] listaDeMonstros) {
 		this.nome = nome;
-		monstro = listaDeMonstros;
-		monstroAtual = monstro[0];
-		correu = false;
-		derrotado = false;
+		this.monstro = listaDeMonstros;
+		this.monstroAtual = monstro[0];
+		this.correu = false;
+		this.derrotado = false;
 	}
 
 	public String getNome() {
 		return nome;
 	}
-	public void setNome(String nome){
+
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	// Métodos relacionados aos monstros do treinador
 	public Monstro getMonstro(int i) {
 		return monstro[i];
 	}
-	public void setMonstro(int i,Monstro monstro){
+
+	public void setMonstro(int i, Monstro monstro) {
 		this.monstro[i] = monstro;
+		this.monstroAtual = this.monstro[0];
 	}
 
 	public Monstro getMonstroAtual() {

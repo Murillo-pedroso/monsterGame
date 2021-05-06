@@ -5,7 +5,9 @@ public class App {
         Scanner leitura = new Scanner(System.in);
         Treinador treinadorUm = new Treinador();
         Treinador treinadorDois = new Treinador();
-
+        Monstro listaMonstro = new Monstro();
+        Escolha verificaEscolha = new Escolha();
+        Menu menuInteracao = new Menu();
         int resposta;
 
         Ataque rajadaDeFogo = new Ataque("Rajada de Fogo",TipoElemento.FOGO,5);
@@ -35,33 +37,31 @@ public class App {
         AtaqueCarregado terremoto = new AtaqueCarregado("Terremoto", TipoElemento.TERRA, 10, 4, Efeito.NULO);
         AtaqueCarregado barrigada = new AtaqueCarregado("Barrigada", TipoElemento.NORMAL, 12, 3, Efeito.ATORDOADO);
         AtaqueCarregado hiperFeixe = new AtaqueCarregado("Hiper Feixe", TipoElemento.NORMAL, 17, 1, Efeito.NULO);
-        
+
         /* ///  ********IMPORTANTE: OS VALORES DE VIDA, DEFESA, ATAQUE E VELOCIDADE TAO COM 1, SE ALGUEM TIVER COM TEMPO FAZ OS VALORES AI, 
         LEMBRA Q A SOMA DE TODOS OS QUATRO VALORES TEM Q DAR 100 EH NOIS, VAMO PRA CIMA GRUPO.************* /// */
         
-        Monstro boitata = new Monstro(0, "Boitata", TipoElemento.FOGO, TipoElemento.NULO, 1, 1, 1, 1, rajadaDeFogo,rosnado,mordida,erupcaoDeFogo);
-        Monstro cuca = new Monstro(1, "Cuca", TipoElemento.DRAGAO,TipoElemento.PSIQUICO,1,1,1,1,asasCortantes,raioPsiquico,tapaDeLama,pulsoDoDragao);
-        Monstro boto = new Monstro(2, "Boto", TipoElemento.AGUA,TipoElemento.FADA,1,1,1,1,esguichoDeAgua,mordida,cantoMagico,bonsSonhos);
-        Monstro cabraCabriola = new Monstro(3,"Cabra Cabriola", TipoElemento.SOMBRIO,TipoElemento.NULO,1,1,1,1,mordida,ataqueMalandro,rosnado,escuridao);
-        Monstro chibamba = new Monstro(4,"Chibamba",TipoElemento.PLANTA,TipoElemento.NULO,1,1,1,1,voadora,ataqueMalandro,tiroVenenoso,sementesVenenosas);
-        Monstro corpoSeco = new Monstro(5,"Corpo Seco",TipoElemento.FANTASMA,TipoElemento.NULO,1,1,1,1,garraFantasmagorica,mordida,rosnado,bolaSombria);
-        Monstro curupira = new Monstro(6, "Curupira", TipoElemento.LUTADOR, TipoElemento.NULO, 1, 1, 1, 1, rajadaDeFogo, voadora, ataqueMalandro, antonioNunes);
-        Monstro encantados = new Monstro(7,"Encantados",TipoElemento.PLANTA,TipoElemento.FADA,1,1,1,1,tiroVenenoso,cantoMagico,raioPsiquico,hiperFeixe);
-        Monstro gorjala = new Monstro(8,"Gorjala",TipoElemento.PEDRA,TipoElemento.NULO,1,1,1,1,arremecoDePedra,rosnado,ataqueMalandro,desmoronamento);
-        Monstro homemDoSaco = new Monstro(9,"Homem do Saco", TipoElemento.NORMAL,TipoElemento.NULO,1,1,1,1,ataqueMalandro,mordida,voadora,barrigada);
-        Monstro iara = new Monstro(10,"Iara",TipoElemento.AGUA,TipoElemento.FADA,1,1,1,1,esguichoDeAgua,cantoMagico,mordida,alagamento);
-        Monstro labatut = new Monstro(11,"Labatut",TipoElemento.TERRA,TipoElemento.NULO,1,1,1,1,tapaDeLama,arremecoDePedra,ataqueMalandro,terremoto);
-        Monstro lobisomem = new Monstro(12,"Lobisomem",TipoElemento.SOMBRIO,TipoElemento.NULO,1,1,1,1,rosnado,mordida,garraFantasmagorica,escuridao);
-        Monstro louraDoBanheiro = new Monstro(13, "Loura do Banheiro",TipoElemento.FANTASMA,TipoElemento.NULO, 1,1,1,1,raioPsiquico,garraFantasmagorica,ataqueMalandro,bolaSombria);
-        Monstro mulaSemCabeça = new Monstro(14,"Mula sem Cabeça",TipoElemento.FOGO,TipoElemento.NULO,1,1,1,1,rajadaDeFogo,voadora,ataqueMalandro,erupcaoDeFogo);
-        Monstro negrinhoDoPastoreio = new Monstro(15,"Negrinho do Pastoreio",TipoElemento.FADA,TipoElemento.NULO,1,1,1,1,cantoMagico,raioPsiquico,ataqueMalandro,bonsSonhos);
-        Monstro saci = new Monstro(16,"Saci",TipoElemento.LUTADOR,TipoElemento.NULO,1,1,1,1,ataqueMalandro,voadora,raioPsiquico,antonioNunes);
-        Monstro almaDeGato = new Monstro(17,"Alma de Gato",TipoElemento.FOGO,TipoElemento.SOMBRIO,1,1,1,1,rajadaDeFogo,rosnado,mordida,escuridao);
+        listaMonstro.add(0, "Boitata", TipoElemento.FOGO, TipoElemento.NULO, 1, 1, 1, 1, rajadaDeFogo,rosnado,mordida,erupcaoDeFogo);
+        listaMonstro.add(1, "Cuca", TipoElemento.DRAGAO,TipoElemento.PSIQUICO,1,1,1,1,asasCortantes,raioPsiquico,tapaDeLama,pulsoDoDragao);
+        listaMonstro.add(2, "Boto", TipoElemento.AGUA,TipoElemento.FADA,1,1,1,1,esguichoDeAgua,mordida,cantoMagico,bonsSonhos);
+        listaMonstro.add(3,"Cabra Cabriola", TipoElemento.SOMBRIO,TipoElemento.NULO,1,1,1,1,mordida,ataqueMalandro,rosnado,escuridao);
+        listaMonstro.add(4,"Chibamba",TipoElemento.PLANTA,TipoElemento.NULO,1,1,1,1,voadora,ataqueMalandro,tiroVenenoso,sementesVenenosas);
+        listaMonstro.add(5,"Corpo Seco",TipoElemento.FANTASMA,TipoElemento.NULO,1,1,1,1,garraFantasmagorica,mordida,rosnado,bolaSombria);
+        listaMonstro.add(6, "Curupira", TipoElemento.LUTADOR, TipoElemento.NULO, 1, 1, 1, 1, rajadaDeFogo, voadora, ataqueMalandro, antonioNunes);
+        listaMonstro.add(7,"Encantados",TipoElemento.PLANTA,TipoElemento.FADA,1,1,1,1,tiroVenenoso,cantoMagico,raioPsiquico,hiperFeixe);
+        listaMonstro.add(8,"Gorjala",TipoElemento.PEDRA,TipoElemento.NULO,1,1,1,1,arremecoDePedra,rosnado,ataqueMalandro,desmoronamento);
+        listaMonstro.add(9,"Homem do Saco", TipoElemento.NORMAL,TipoElemento.NULO,1,1,1,1,ataqueMalandro,mordida,voadora,barrigada);
+        listaMonstro.add(10,"Iara",TipoElemento.AGUA,TipoElemento.FADA,1,1,1,1,esguichoDeAgua,cantoMagico,mordida,alagamento);
+        listaMonstro.add(11,"Labatut",TipoElemento.TERRA,TipoElemento.NULO,1,1,1,1,tapaDeLama,arremecoDePedra,ataqueMalandro,terremoto);
+        listaMonstro.add(12,"Lobisomem",TipoElemento.SOMBRIO,TipoElemento.NULO,1,1,1,1,rosnado,mordida,garraFantasmagorica,escuridao);
+        listaMonstro.add(13, "Loura do Banheiro",TipoElemento.FANTASMA,TipoElemento.NULO, 1,1,1,1,raioPsiquico,garraFantasmagorica,ataqueMalandro,bolaSombria);
+        listaMonstro.add(14,"Mula sem Cabeça",TipoElemento.FOGO,TipoElemento.NULO,1,1,1,1,rajadaDeFogo,voadora,ataqueMalandro,erupcaoDeFogo);
+        listaMonstro.add(15,"Negrinho do Pastoreio",TipoElemento.FADA,TipoElemento.NULO,1,1,1,1,cantoMagico,raioPsiquico,ataqueMalandro,bonsSonhos);
+        listaMonstro.add(16,"Saci",TipoElemento.LUTADOR,TipoElemento.NULO,1,1,1,1,ataqueMalandro,voadora,raioPsiquico,antonioNunes);
+        listaMonstro.add(17,"Alma de Gato",TipoElemento.FOGO,TipoElemento.SOMBRIO,1,1,1,1,rajadaDeFogo,rosnado,mordida,escuridao);
 
-        Escolha verificaEscolhaDoJogador = new Escolha();
-
-        Menu menuInteracaoComUsuario = new Menu();
-        resposta = menuInteracaoComUsuario.menuInteracao();
+        
+        resposta = menuInteracao.menuInteracao();
         
         if(resposta == 1) {
             
@@ -73,7 +73,8 @@ public class App {
                     break;
 
                 case 1:
-                    verificaEscolhaDoJogador.escolhaMonstro();
+                    verificaEscolha.escolhaMonstro(treinadorUm, listaMonstro);
+                    verificaEscolha.escolhaMonstro(treinadorDois, listaMonstro);
                     break;
                 
                 case 2:
