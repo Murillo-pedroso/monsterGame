@@ -45,31 +45,37 @@ public class Monstro{
         this.pos++;
     } 
     public int getId(int i) {
-        return id[i];
+        return this.id[i];
     }
     public String getNome(int i){
-		return nome[i];
+		return this.nome[i];
 	}
 	public TipoElemento getTipo(int i){
-		return tipo[i];
+		return this.tipo[i];
+	}
+    public TipoElemento getTipoSecundario(int i){
+		return this.tipoSecundario[i];
 	}
     public double getForca(int i) {
-        return forca[i];
+        return this.forca[i];
     }
     public double getDefesa(int i) {
-        return defesa[i];
+        return this.defesa[i];
     }
     public double getVelocidade(int i) {
-        return velocidade[i];
+        return this.velocidade[i];
     }
 
     //Métodos relacionados ao estado do pokémon
 	public double getVida(int i) {
-		return vida[i];
+		return this.vida[i];
 	}
 	public double getVidaMax(int i) {
-		return vidaMax[i];
+		return this.vidaMax[i];
 	}
+    public int getPos(){
+        return this.pos;
+    }
     /* esses metodos devem ser feitos no treinador eu acho
 	public void diminuiVida(double dano){
 		int intDano = (int) dano;
@@ -91,15 +97,19 @@ public class Monstro{
 	}
 */
     //Métodos relacionados aos ataques do pokémon
-	public String getAtaque(int i,int num){
-		return ataques[i][num].getNome();
+	public Ataque getAtaque(int i,int num){
+		return this.ataques[i][num];
 	}
+    public AtaqueCarregado getAtaqueCarregado(int i){
+        return this.ataqueCarregado[i];
+    }
 	public Ataque[] getListaAtk(int i) {
-		return ataques[i];
+		return this.ataques[i];
 	}
 	public double getDanoAtual(int i,int num) {
-		return ataques[i][num].getDano();
+		return this.ataques[i][num].getDano();
 	}
+
 	public void imprimeAtaques(int i) {
 		System.out.println("1 - " + this.ataques[i][0].getNome() +  "\t2 - " + this.ataques[i][1].getNome()+"3 - " + this.ataques[i][2].getNome() +  "\t4 - " + this.ataqueCarregado[i].getNome());
 
