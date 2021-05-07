@@ -65,19 +65,18 @@ public class App {
         
         if(resposta == 1) {
             
-
             switch (resposta) {
 
-                case 0:
+                case 1:
                     System.out.println("Até a próxima jogador!");
                     break;
 
-                case 1:
+                case 2:
                     verificaEscolha.escolhaMonstro(treinadorUm, listaMonstro);
                     verificaEscolha.escolhaMonstro(treinadorDois, listaMonstro);
                     break;
                 
-                case 2:
+                case 3:
                     System.out.println("Até a próxima jogador!");
                     break;
 
