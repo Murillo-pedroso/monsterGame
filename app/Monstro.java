@@ -137,7 +137,7 @@ public class Monstro {
 
     public void imprime() {
         for (int i = 0; i < this.pos; i++) {
-            System.out.println(String.format("%3s  %1s  %21s %1s %10s %1s %10s", this.id[i], "|", this.nome[i],"|",this.tipo.length,"|",this.tipoSecundario.));
+            System.out.println(String.format("%3s  %1s  %21s %1s %10s %1s %10s", this.id[i], "|", this.nome[i],"|",this.tipo.length,"|",this.tipoSecundario));
         }
 
     }
