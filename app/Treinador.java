@@ -1,20 +1,12 @@
 public class Treinador {
 	private String nome;
-	private Monstro[] monstro = new Monstro[3];
-	private Monstro monstroAtual;
+	private Monstro monstro;
+	private int monstroAtualId;
 	private boolean correu;
 	private boolean derrotado;
 
 	public Treinador() {
 
-		this.correu = false;
-		this.derrotado = false;
-	}
-
-	public Treinador(String nome, Monstro[] listaDeMonstros) {
-		this.nome = nome;
-		this.monstro = listaDeMonstros;
-		this.monstroAtual = monstro[0];
 		this.correu = false;
 		this.derrotado = false;
 	}
@@ -28,19 +20,19 @@ public class Treinador {
 	}
 
 	// Métodos relacionados aos monstros do treinador
-	public Monstro getMonstro(int i) {
-		return monstro[i];
+	public Monstro getMonstro() {
+		return monstro;
 	}
 
-	public void setMonstro(int i, Monstro monstro) {
-		this.monstro[i] = monstro;
-		this.monstroAtual = this.monstro[0];
+	public void setMonstro(Monstro monstro) {
+		this.monstro = monstro;
+		this.monstroAtualId = this.monstro.getId(0);
 	}
 
-	public Monstro getMonstroAtual() {
-		return monstroAtual;
+	public int getMonstroAtualId() {
+		return monstroAtualId;
 	}
-
+/*
 	public String getAtaqueAtual(int num) {
 		return monstroAtual.getAtaque(num);
 	}
@@ -109,7 +101,7 @@ public class Treinador {
 		} else
 			System.out.println("Sua lista de monstros está cheia!");
 	}
-
+*/
 	// Métodos relacionados a fuga ou derrota do treinador
 	public boolean perdeu() {
 		return derrotado;

@@ -14,15 +14,18 @@ public enum TipoElemento {
     NULO(13,"");
 
     public int valor;
-    public String descricao;
+    public String tipo;
 
-    private TipoElemento(int valor,String descricao) {
+    private TipoElemento(int valor,String tipo) {
         this.valor = valor;
-        this.descricao = descricao;
+        this.tipo = tipo;
     }
 
     public int compareTo(String string) {
         return 0;
+    }
+    public String getTipo(){
+        return this.tipo;
     }
 
 

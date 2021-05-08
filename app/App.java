@@ -6,9 +6,8 @@ public class App {
         Treinador treinadorUm = new Treinador();
         Treinador treinadorDois = new Treinador();
         Monstro listaMonstro = new Monstro();
-        Escolha verificaEscolha = new Escolha();
         Menu menuInteracao = new Menu();
-        int resposta;
+       
 
         Ataque rajadaDeFogo = new Ataque("Rajada de Fogo",TipoElemento.FOGO,5);
         Ataque esguichoDeAgua = new Ataque("Esguicho de Agua",TipoElemento.AGUA,4);
@@ -61,75 +60,8 @@ public class App {
         listaMonstro.add(17,"Alma de Gato",TipoElemento.FOGO,TipoElemento.SOMBRIO,1,1,1,1,rajadaDeFogo,rosnado,mordida,escuridao);
 
         
-        resposta = menuInteracao.menuInteracao();
-        
-        if(resposta == 1) {
-            
-            switch (resposta) {
-
-                case 1:
-                    System.out.println("Até a próxima jogador!");
-                    break;
-
-                case 2:
-                    verificaEscolha.escolhaMonstro(treinadorUm, listaMonstro);
-                    verificaEscolha.escolhaMonstro(treinadorDois, listaMonstro);
-                    break;
-                
-                case 3:
-                    System.out.println("Até a próxima jogador!");
-                    break;
-
-                default:
-                    do {
-                        System.out.println("Opção não encontrada, responda novamente!\n");
-                        System.out.println("RESPOSTA: ");
-
-                        resposta = leitura.nextInt();
-
-                        System.out.println("\n");
-
-                    } while(resposta < 1 || resposta > 2);
-
-                    break;
-            }   
-        }
-
-        
-        else if(resposta == 2){
-            System.out.println("Regras do jogo: ");
-            System.out.println("1- O mesmo jogador não poderá escolher o mesmo monstro");
-            System.out.println("2- Existem as prioridades de desempate para quem vai atacar primeiro");
-            System.out.println("3- O jogador 2 não tem desvantagem por ser 2\n");
-
-            System.out.println("O que deseja fazer?");
-            System.out.println("\t 1- Jogar partida arcade!");
-            System.out.println("\t 2- Sair\n");
-
-            System.out.println("Resposta: ");       
-            resposta = leitura.nextInt();    
-
-            if (resposta == 1) {
-                verificaEscolhaDoJogador.escolhaMonstro();
-            }
-
-            else if (resposta == 2) {
-                System.out.println("Sessão encerrada Monster Gamer");
-                System.out.println("Até a próxima");
-            }
-
-            do {
-                System.out.println("Opção não encontrada, digite novamente!");
-                System.out.println("Resposta: ");
-                resposta = leitura.nextInt();
-            } while (resposta < 1 || resposta > 2);
-        }
-        
-        else if (resposta == 3) {
-            System.out.println("Sessão encerrada Monster Gamer");
-            System.out.println("Até a próxima!");
-        }
-
+        menuInteracao.menuInteracao(treinadorUm,treinadorDois,listaMonstro);
+       
         leitura.close();
     }
 }

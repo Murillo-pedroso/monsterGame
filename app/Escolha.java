@@ -12,7 +12,7 @@ public class Escolha {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Digite seu nome de treinador!!");
-        nomeTreinador = sc.nextLine();
+        nomeTreinador = sc.next();
         System.out.println(">>> Atenção treinador "+nomeTreinador+". Faça suas escolhas! <<<");
 
         for (int i = 0; i < 3; i++) {
@@ -28,7 +28,7 @@ public class Escolha {
 
                     escolhaMonstro = sc.nextInt();
 
-                    if(escolhaMonstro<0||escolhaMonstro>listaMonstro.getPos()){
+                    if(escolhaMonstro<0||escolhaMonstro>=listaMonstro.getPos()){
                         System.out.println("Monstro inválido.");
                         error=1;
                     }
@@ -79,7 +79,8 @@ public class Escolha {
         }
 
         escolhaTreinador.imprime();
-        sc.close();
+        treinador.setMonstro(escolhaTreinador);
+        
     }
 
 }
