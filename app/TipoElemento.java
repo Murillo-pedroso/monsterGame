@@ -3,7 +3,7 @@ public class TipoElemento {
     private int valor;
     private String tipo;
 
-    TipoElemento(int valor,String tipo) {
+    public TipoElemento(int valor,String tipo) {
         this.valor = valor;
         this.tipo = tipo;
     }
@@ -12,7 +12,7 @@ public class TipoElemento {
         return 0;
     }
     public String getTipo(){
-        return tipo;
+        return this.tipo;
     }
 
 

@@ -13,6 +13,7 @@ public class Escolha {
 
         System.out.println("Digite seu nome de treinador!!");
         nomeTreinador = sc.next();
+        treinador.setNome(nomeTreinador);
         System.out.println(">>> Atenção treinador "+nomeTreinador+". Faça suas escolhas! <<<");
 
         for (int i = 0; i < 3; i++) {

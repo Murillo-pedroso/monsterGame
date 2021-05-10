@@ -87,6 +87,9 @@ public class Monstro {
     public int getPos() {
         return this.pos;
     }
+    public void setVida(int i , double vida){
+        this.vida[i] = vida;
+    }
 
     /*
      * esses metodos devem ser feitos no treinador eu acho public void
@@ -115,6 +118,7 @@ public class Monstro {
     public void imprimeAtaques(int i) {
         System.out.println("1 - " + this.ataques[i][0].getNome() + "\t2 - " + this.ataques[i][1].getNome() + "3 - "
                 + this.ataques[i][2].getNome() + "\t4 - " + this.ataqueCarregado[i].getNome());
+                
 
     }
 
@@ -136,8 +140,16 @@ public class Monstro {
     }
 
     public void imprime() {
+        System.out.println(String.format("%3s  %1s  %13s %7s %1s %12s %5s","ID","|","Nome","","|","Tipo","")+
+        "\n-----|------------------------|----------------------");
+        
         for (int i = 0; i < this.pos; i++) {
-            System.out.println(String.format("%3s  %1s  %21s %1s %10s %1s %10s", this.id[i], "|", this.nome[i],"|",this.tipo,"|",this.tipoSecundario));
+            System.out.printf(String.format("%3s  %1s  %-21s %1s %8s ", this.id[i], "|", this.nome[i],"|",this.tipo[i].getTipo()));
+            if(this.tipoSecundario[i].getTipo().equals("")==false){
+                System.out.printf(String.format("%-1s %-9s ", "/",this.tipoSecundario[i].getTipo()));  
+            }
+            System.out.printf("\n");
+           
         }
 
     }
