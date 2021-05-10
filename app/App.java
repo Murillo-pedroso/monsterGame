@@ -93,7 +93,7 @@ public class App {
         
 
         menuInteracao.menuInteracao(treinadorUm, treinadorDois, listaMonstro);
-        System.out.println(">>>>Que o combate comece<<<<");
+        System.out.println("\n\n                       >>>> Que o combate comece <<<<");
         treinadorDois.getMonstro().setVida(0, 20);
         combate.combateMenu(treinadorUm, treinadorDois, 1, listaMonstro);
 

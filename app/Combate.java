@@ -5,7 +5,8 @@ public class Combate {
     public void combateMenu(Treinador atacante,Treinador defensor,int turno,Monstro listaMonstro){
 
         System.out.println("Turno " + turno);
-        System.out.println("**>  Seu turno " + atacante.getNome()+"  <**");
+        System.out.println("");
+        System.out.printf(String.format("%23s %-40s","","**>  Seu turno " + atacante.getNome()+"  <**")+"\n");
         System.out.println("|--------------------------------|");
 
         System.out.println("| Inimigo:                       |");
@@ -26,7 +27,7 @@ public class Combate {
         System.out.printf(String.format("%39s", ""));
         System.out.println("|--------------------------------|");
         System.out.printf(String.format("%39s", ""));
-        System.out.println("| Atual:                         |");
+        System.out.println("| Seu atual:                     |");
         System.out.printf(String.format("%39s", ""));
         System.out.println("| "+String.format("%-21s %10s", listaMonstro.getNome(atacante.getMonstroAtualId()),"|"));
         System.out.printf(String.format("%39s", ""));
@@ -44,7 +45,7 @@ public class Combate {
         System.out.println("");
         System.out.printf(String.format("%39s", ""));
         System.out.println("|--------------------------------|");
-
+        System.out.println("\n");
         System.out.printf(String.format("%7s", ""));
         System.out.println("|---------------------------------------------------------|");
         System.out.printf(String.format("%7s", ""));
