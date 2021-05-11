@@ -209,7 +209,7 @@ public class App {
 					if (vezTreinadorUm) {
 						vezTreinadorUm = false;
 					} else {
-
+						
 						System.out.println("Calculou o dano: \nJogador 1 = " + danoTreinadorUm + "\nJogador 2 = "
 								+ danoTreinadorDois);
 						System.in.read();

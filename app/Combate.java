@@ -82,9 +82,9 @@ public class Combate {
 
     }
     public double calculaAtaque(Treinador atacante,Treinador defensor,double golpeEscolhido){
-        //DANO = (a.atk * (b.pdef / 2)) * (20 + a.str) / 20 -->https://centrorpg.com/index.php?topic=19931.0
+        //DANO = +((a.atk * (b.pdef / 2)) * (20 + a.str) / 20)/200 -->https://centrorpg.com/index.php?topic=19931.0
             
-        return (+(Math.round((golpeEscolhido * (defensor.getMonstro().getDefesa(defensor.getMonstroAtualId() / 2)) * (20 + atacante.getMonstro().getForca(atacante.getMonstroAtualId()) /20)))/150));
+        return (+(Math.round((golpeEscolhido * (defensor.getMonstro().getDefesa(defensor.getMonstroAtualId() / 2)) * (20 + atacante.getMonstro().getForca(atacante.getMonstroAtualId()) /20)))/200));
     }
     
     
