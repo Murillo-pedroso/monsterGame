@@ -152,5 +152,23 @@ public class Treinador {
 	public boolean ativo() {
 		return !correu && !derrotado ? true:false ;
 	}
+	public void ataques(){
+		
+		System.out.println("\n");
 
+		System.out.println("|-----------------------------------------------------------------------------------------------------------|");
+		System.out.printf(String.format("%5s %-22s %-7s %-9s %5s %4s %-22s %-7s %-9s %11s", "|1 - ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 0).getNome()
+		," Tipo: ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 0).getTipo().getTipo(),"  |  "
+		,"2 - ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 1).getNome()	
+		," Tipo: ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 1).getTipo().getTipo(),"|"));
+		System.out.printf("\n");
+		System.out.printf(String.format("%5s %-22s %-7s %-9s %5s %4s %-22s %-7s %-9s %6s %2d %1s","|3 - ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 2).getNome()
+		," Tipo: ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 2).getTipo().getTipo(),"  |  "
+		,"4 - ",this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getNome()
+		," Tipo: ",this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getTipo().getTipo()
+		," PP: ",this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getEnergia(),"|"));
+		System.out.println("\n|-----------------------------------------------------------------------------------------------------------|");
+				
+		
+	}
 }

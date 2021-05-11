@@ -137,13 +137,13 @@ public class Monstro {
 
     public void imprime() {
         for (int i = 0; i < this.pos; i++) {
-            System.out.println(String.format("%3s  %1s  %21s %1s %10s %1s %10s", this.id[i], "|", this.nome[i],"|",this.tipo[i].getTipo(),"|",this.tipoSecundario[i].getTipo()));
+            System.out.println(String.format("%3s  %1s  %21s %1s %10s %1s %-10s", this.id[i], "|", this.nome[i],"|",this.tipo[i].getTipo(),"/",this.tipoSecundario[i].getTipo()));
         }
 
     }
 
     public void imprimeByIndice(int i) {
-        System.out.println(String.format("%3s  %1s  %21s %1s %2s %1s %10s %1s %10s", i, "|", this.nome[i],"|",this.vida[i],"|",this.tipo[i].getTipo(),"|",this.tipoSecundario[i].getTipo()));
+        System.out.println(String.format("%3s  %1s  %21s %1s %2s %1s %10s %1s %-10s", i, "|", this.nome[i],"|",this.vida[i],"|",this.tipo[i].getTipo(),"/",this.tipoSecundario[i].getTipo()));
     }
 
     public void setVida(int indice, double novaVida) {
