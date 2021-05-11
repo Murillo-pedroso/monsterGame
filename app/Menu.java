@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -5,7 +6,7 @@ public class Menu {
     public Menu() {
     }
 
-    public int menuInteracao(Treinador treinadorUm, Treinador treinadorDois, Monstro listaMonstro) {
+    public int menuInteracao(Treinador treinadorUm, Treinador treinadorDois, Monstro listaMonstro) throws InterruptedException, IOException {
         Escolha verificaEscolha = new Escolha();
         Scanner leitura = new Scanner(System.in);
         int navegacaoMenu = 0;
@@ -24,10 +25,8 @@ public class Menu {
 
             switch (navegacaoMenu) {
 
-                case 1:
-                    System.out.println("Escolha seus monstros, treinador");
+                case 1:                   
                     verificaEscolha.escolhaMonstro(treinadorUm, listaMonstro);
-                    System.out.println("Escolha seus monstros, treinador");
                     verificaEscolha.escolhaMonstro(treinadorDois, listaMonstro);
                     break;
                 case 2:
@@ -35,7 +34,10 @@ public class Menu {
                     System.out.println("1- O mesmo jogador não poderá escolher o mesmo monstro");
                     System.out.println("2- Existem as prioridades de desempate para quem vai atacar primeiro");
                     System.out.println("3- O jogador 2 não tem desvantagem por ser 2\n");
-                    
+                    System.out.println("Pressione qualquer tecla para continuar...");
+                    System.in.read();//https://www.guj.com.br/t/como-faco-pra-pausar-a-execucao/32986/6
+                    //Thread.sleep(500);//https://www.javatpoint.com/sleep()-method
+
 
                     break;
 
@@ -44,8 +46,8 @@ public class Menu {
                     break;
                 default:
 
-                    System.out.println("Opcao não encontrada, digite novamente");
-                    System.out.print("RESPOSTA: ");
+                    System.out.println("Opcao não encontrada, digite novamente\n");
+                   
 
                     break;
             }

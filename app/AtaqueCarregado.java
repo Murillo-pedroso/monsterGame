@@ -16,7 +16,6 @@ public class AtaqueCarregado extends Ataque{
         this.energia = energia;
 
     }
-
     public Efeito getEfeito(){
         return this.efeito;
     }
