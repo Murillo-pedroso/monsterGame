@@ -1,5 +1,5 @@
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -9,6 +9,7 @@ public class App {
         Treinador treinadorUm = new Treinador();
         Treinador treinadorDois = new Treinador();
         Monstro listaMonstro = new Monstro();
+        List<MonstroNew> listaMonstrosNew = new ArrayList<MonstroNew>();
         Menu menuInteracao = new Menu();
         Combate combate = new Combate();
 
@@ -61,6 +62,14 @@ public class App {
          * ///
          */
 
+/*        listaMonstrosNew.add(new MonstroNew(0, "Boitata", fogo, nulo, 50,30, 10, 10, rajadaDeFogo, rosnado, mordida, erupcaoDeFogo));
+        listaMonstrosNew.add(new MonstroNew(1, "Cuca", dragao, psiquico, 1, 1, 1, 1, asasCortantes, raioPsiquico, tapaDeLama, pulsoDoDragao));
+ 
+        for(MonstroNew m : listaMonstrosNew){
+            m.imprime();
+        }
+        listaMonstrosNew.get(0).imprime(); */
+
         listaMonstro.add(0, "Boitata", fogo, nulo, 50, 30, 10, 10, rajadaDeFogo, rosnado, mordida, erupcaoDeFogo);
         listaMonstro.add(1, "Cuca", dragao, psiquico, 1, 1, 1, 1, asasCortantes, raioPsiquico, tapaDeLama,
                 pulsoDoDragao);
@@ -94,8 +103,43 @@ public class App {
 
         menuInteracao.menuInteracao(treinadorUm, treinadorDois, listaMonstro);
         System.out.println("\n\n                       >>>> Que o combate comece <<<<");
-        treinadorDois.getMonstro().setVida(0, 20);
-        combate.combateMenu(treinadorUm, treinadorDois, 1, listaMonstro);
+        //treinadorDois.getMonstro().setVida(0, 20);
+        int turno = 1;
+        int escolha = 0;
+        boolean vezTreinadorUm = true;
+        
+        do{
+                if(vezTreinadorUm)
+                        escolha = combate.combateMenu(treinadorUm, treinadorDois, turno);
+                else
+                        escolha = combate.combateMenu(treinadorDois, treinadorUm, turno);
+ 
+                 switch(escolha){
+                        case 1:
+                                if(vezTreinadorUm){
+                                        double ataque = treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(), 0).getDano();
+                                        double vida  = treinadorDois.getMonstro().getVida(treinadorDois.getMonstroAtualId()) - ataque;
+                                        treinadorDois.getMonstro().setVida(treinadorDois.getMonstroAtualId(),vida);
+                                }
+                                break;
+                        case 2:
+                                break;
+                        case 3:
+                                treinadorUm.mudaMonstroAtual();
+                                break;
+                        case 4:
+                                treinadorUm.corre();
+                                break;
+                        default : break;
+                }
+                turno++;
+                
+                if(vezTreinadorUm)
+                        vezTreinadorUm = false;
+                else
+                        vezTreinadorUm = true;
+                
+                } while(treinadorUm.ativo() || treinadorDois.ativo());
 
         leitura.close();
     }

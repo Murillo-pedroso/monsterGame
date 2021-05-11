@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 public class Menu {
+    
+    public Menu() {
+    }
+
     public int menuInteracao(Treinador treinadorUm, Treinador treinadorDois, Monstro listaMonstro) {
         Escolha verificaEscolha = new Escolha();
         Scanner leitura = new Scanner(System.in);

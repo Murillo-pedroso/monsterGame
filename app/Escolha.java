@@ -81,6 +81,7 @@ public class Escolha {
 
         escolhaTreinador.imprime();
         treinador.setMonstro(escolhaTreinador);
+        //sc.close();
         
     }
 

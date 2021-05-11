@@ -1,8 +1,10 @@
+import java.util.Scanner;
+
 public class Combate {
     public Combate(){
 
     }
-    public void combateMenu(Treinador atacante,Treinador defensor,int turno,Monstro listaMonstro){
+    public int combateMenu(Treinador atacante,Treinador defensor,int turno){
 
         System.out.println("Turno " + turno);
         System.out.println("");
@@ -10,12 +12,12 @@ public class Combate {
         System.out.println("|--------------------------------|");
 
         System.out.println("| Inimigo:                       |");
-        System.out.println("| "+String.format("%-21s %10s", listaMonstro.getNome(defensor.getMonstroAtualId()),"|"));
+        System.out.println("| "+String.format("%-21s %10s", defensor.getMonstro().getNome(defensor.getMonstroAtualId()),"|"));
         System.out.printf("| "+String.format("%8s ", "HP   "));
-        for (int i = 0; i < (defensor.getMonstro().getVida(0)/5); i++) {
+        for (int i = 0; i < (defensor.getMonstro().getVida(defensor.getMonstroAtualId())/5); i++) {
             System.out.printf("▓");
         }
-        for (int i = 0; i < (defensor.getMonstro().getVidaMax(0)/5)-(defensor.getMonstro().getVida(0)/5); i++) {
+        for (int i = 0; i < (defensor.getMonstro().getVidaMax(defensor.getMonstroAtualId())/5)-(defensor.getMonstro().getVida(defensor.getMonstroAtualId())/5); i++) {
 
             System.out.printf("▒");
         }       
@@ -29,19 +31,19 @@ public class Combate {
         System.out.printf(String.format("%39s", ""));
         System.out.println("| Seu atual:                     |");
         System.out.printf(String.format("%39s", ""));
-        System.out.println("| "+String.format("%-21s %10s", listaMonstro.getNome(atacante.getMonstroAtualId()),"|"));
+        System.out.println("| "+String.format("%-21s %10s", atacante.getMonstro().getNome(atacante.getMonstroAtualId()),"|"));
         System.out.printf(String.format("%39s", ""));
         System.out.printf("| "+String.format("%8s ", "HP   "));
-        for (int i = 0; i < (atacante.getMonstro().getVida(0)/5); i++) {
+        for (int i = 0; i < (atacante.getMonstro().getVida(atacante.getMonstroAtualId())/5); i++) {
             System.out.printf("▓");
         }
-        for (int i = 0; i < (atacante.getMonstro().getVidaMax(0)/5)-(atacante.getMonstro().getVida(0)/5); i++) {
+        for (int i = 0; i < (atacante.getMonstro().getVidaMax(atacante.getMonstroAtualId())/5)-(atacante.getMonstro().getVida(atacante.getMonstroAtualId())/5); i++) {
 
             System.out.printf("▒");
         }     
         System.out.println("");
         System.out.printf(String.format("%39s", ""));
-        System.out.printf("| "+String.format("%15.0f %1s %-12.0f %1s", atacante.getMonstro().getVida(0),"/",atacante.getMonstro().getVidaMax(0),"|"));
+        System.out.printf("| "+String.format("%15.0f %1s %-12.0f %1s", atacante.getMonstro().getVida(atacante.getMonstroAtualId()),"/",atacante.getMonstro().getVidaMax(atacante.getMonstroAtualId()),"|"));
         System.out.println("");
         System.out.printf(String.format("%39s", ""));
         System.out.println("|--------------------------------|");
@@ -50,13 +52,18 @@ public class Combate {
         System.out.println("|---------------------------------------------------------|");
         System.out.printf(String.format("%7s", ""));
         System.out.println("|"+String.format("%-30s %1s %11s %1s %5s ",
-         " O que "+listaMonstro.getNome(atacante.getMonstroAtualId()),"|","1 - Atacar"," ","2 - Bolsa |"));
+         " O que "+atacante.getMonstro().getNome(atacante.getMonstroAtualId()),"|","1 - Atacar"," ","2 - Bolsa |"));
          System.out.printf(String.format("%7s", ""));
          System.out.printf("|"+String.format("%-30s %1s %11s %1s %5s ",
          " irá fazer?","|","3 - Trocar"," ","4 - Fugir |"));
          System.out.println("");
          System.out.printf(String.format("%7s", ""));
          System.out.println("|---------------------------------------------------------|");
+
+         Scanner sc = new Scanner(System.in);
+         int ret = sc.nextInt();
+
+         return ret;
         
     }
     
