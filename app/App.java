@@ -46,11 +46,11 @@ public class App {
 		TipoElemento nulo = new TipoElemento(13, "");
 
 		Ataque rajadaDeFogo = new Ataque("Rajada de Fogo", fogo, 5);
-		Ataque esguichoDeAgua = new Ataque("Esguicho de Agua", agua, 4);
-		Ataque tiroVenenoso = new Ataque("Tiro Venenoso", planta, 4);
+		Ataque esguichoDeAgua = new Ataque("Esguicho de Agua", agua, 4.5);
+		Ataque tiroVenenoso = new Ataque("Tiro Venenoso", planta, 4.5);
 		Ataque asasCortantes = new Ataque("Asas Cortantes", dragao, 5);
 		Ataque raioPsiquico = new Ataque("Raio Psiquico", psiquico, 6);
-		Ataque cantoMagico = new Ataque("Canto Magico", fada, 2);
+		Ataque cantoMagico = new Ataque("Canto Magico", fada, 4);
 		Ataque rosnado = new Ataque("Rosnado", sombrio, 6);
 		Ataque garraFantasmagorica = new Ataque("Garra Fantasmagorica", fantasma, 4);
 		Ataque voadora = new Ataque("Voadora", lutador, 7);
