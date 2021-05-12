@@ -3,17 +3,16 @@ import java.util.Scanner;
 public class Treinador {
 	private String nome;
 	private Monstro monstro;
-	// private MonstroNew m1;
-	// private MonstroNew m2;
-	// private MonstroNew m3;
-	private int monstroAtualId; //indice da lista de monstros do treinador
+	private int monstroAtualId; // indice da lista de monstros do treinador
 	private boolean correu;
 	private boolean derrotado;
+	
 
 	public Treinador() {
 
 		this.correu = false;
 		this.derrotado = false;
+		
 	}
 
 	public String getNome() {
@@ -26,7 +25,7 @@ public class Treinador {
 
 	// Métodos relacionados aos monstros do treinador
 	public Monstro getMonstro() {
-		return monstro;
+		return this.monstro;
 	}
 
 	public void setMonstro(Monstro monstro) {
@@ -35,140 +34,114 @@ public class Treinador {
 	}
 
 	public int getMonstroAtualId() {
-		return monstroAtualId;
+		return this.monstroAtualId;
+	}
+	public boolean getCorreu(){
+		return this.correu;
+	}
+	public boolean getDerrotado(){
+		return this.derrotado;
 	}
 
-	// public String getAtaqueAtual(int num) {
-	// 	return monstroAtual.getAtaque(num);
-	// }
-
-	// public int getDanoAtual(int num) {
-	// 	return monstroAtual.getDanoAtual(num);
-	// }
-
-	// public void recebeAtaque(int dano) {
-	// 	monstroAtual.diminuiVida(dano);
-	// }
-
-	// public void cura() {
-	// 	if (monstroAtual.estaVivo()) {
-	// 		monstroAtual.aumentaVida(100);
-	// 	}
-	// }
-
-	// public int quantosMonstros() {
-	// 	return monstro.length;
-	// }
-
 	public void mudaMonstroAtual() {
-		if(!imprimeMonstro())
+		if (!imprimeMonstro())
 			return;
+		int erro = 0;
+		int i = 0;
+		if(temMonstroVivo()){
+		do {
+			erro = 0;
+			System.out.println("Escolhe monstro da lista");
+			Scanner sc = new Scanner(System.in);
+			 i = sc.nextInt();
 
-		System.out.println("Escolhe monstro da lista");
-		Scanner sc = new Scanner(System.in);
-		int i = sc.nextInt();
-
-		if(i >= 3 || i < 0){
-			System.out.println("Escolha invalida");
-			return;
-		}
-		if (monstro.getVida(i) <= 0) {
-			System.out.println("Monstro Derrotado [" + monstro.getNome(i)+"]");
-			return;
-		}
-
-		System.out.println("Monstro escolhido :" + monstro.getNome(i));
+			if (i >= 3 || i < 0) {
+				System.out.println("Escolha invalida");
+				erro = 1;
+			}
+			if (monstro.getVida(i) <= 0) {
+				System.out.println("Monstro Derrotado [" + this.monstro.getNome(i) + "]");
+				erro = 1;
+			}
+		} while (erro != 0);
+		System.out.println("Monstro escolhido :" + this.monstro.getNome(i));
 		this.monstroAtualId = i;
+	}
 	}
 
 	public boolean temMonstroVivo() {
 		boolean tem = false;
-		for (int i = 0; i < 3; i++){
-			if (monstro.getVida(i) > 0)
+		for (int i = 0; i < 3; i++) {
+			if (this.getMonstro().getVida(i) > 0)
 				tem = true;
 		}
+		if(tem==false)this.derrotado=true;
+
 		return tem;
 	}
 
 	public boolean imprimeMonstro() {
-		if(!temMonstroVivo())
+		if (!temMonstroVivo())
 			return false;
 
 		for (int i = 0; i < 3; i++) {
 			if (this.monstroAtualId == i)
 				continue;
-			
+
 			this.monstro.imprimeByIndice(i);
 		}
 
 		return true;
 	}
-
-	// public void adicionaMonstro(Monstro novo) {
-	// 	int qtd = monstro.length;
-
-	// 	boolean trocou = false;
-
-	// 	// verifica se tem algum espaço vazio
-	// 	for (int i = 0; i < qtd; i++) {
-	// 		if (!monstro[i].estaVivo()) {
-	// 			monstro[i] = novo;
-	// 			trocou = true;
-	// 		}
-	// 	}
-	// 	if (!trocou && qtd < 3) {
-	// 		// cria uma lista auxiliar
-	// 		Monstro[] novaLista = new Monstro[qtd + 1];
-	// 		for (int i = 0; i < qtd; i++)
-	// 			novaLista[i] = monstro[i];
-	// 		novaLista[qtd] = novo;
-	// 		monstro = novaLista;
-	// 		System.out.println("Monstro " + novo.getNome() + "foi adicionado à sua lista!");
-	// 	} else
-	// 		System.out.println("Sua lista de monstros está cheia!");
-	// }
+	public void diminuiEnergia(){
+		
+		
+		this.getMonstro().setAtaqueCarregadoEnergia(this.getMonstroAtualId(), this.getMonstro().getAtaqueCarregadoEnergia(this.getMonstroAtualId())-1);
+	}
+	public boolean diminuiVida(double dano) throws InterruptedException {
+		boolean morreu = false;
+		this.getMonstro().setVida(this.getMonstroAtualId(), this.getMonstro().getVida(this.getMonstroAtualId()) - dano);
+		System.out.println("Dano causado: "+Math.round(dano));
+		Thread.sleep(1000);
+		if (this.getMonstro().getVida(this.getMonstroAtualId()) <= 0) {
+			System.out.println(this.getMonstro().getNome(this.getMonstroAtualId())+ " foi desmaiado.Escolha outro para substitui-lo:");
+			mudaMonstroAtual();
+			morreu = true;
+		}
+		return morreu;
+	}
 
 	// Métodos relacionados a fuga ou derrota do treinador
-	public boolean perdeu() {
-		return derrotado;
-	}
-
-	public void foiDerrotado() {
-		derrotado = true;
-	}
 
 	public void corre() {
-		correu = true;
-	}
 
-	public boolean fugiu() {
-		return correu;
-	}
-
-	public void voltaCorreu() {
-		correu = false;
+		this.correu = true;
 	}
 
 	public boolean ativo() {
-		return !correu && !derrotado ? true:false ;
+		return !this.correu && !this.derrotado ? true : false;
 	}
-	public void ataques(){
-		
+
+	public void ataques() {
+
 		System.out.println("\n");
 
-		System.out.println("|------------------------------------------------------------------------------------------------------------|");
-		System.out.printf(String.format("%5s %-22s %-7s %-9s %5s %4s %-22s %-7s %-9s %11s", "|1 - ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 0).getNome()
-		," Tipo: ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 0).getTipo().getTipo(),"  |  "
-		,"2 - ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 1).getNome()	
-		," Tipo: ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 1).getTipo().getTipo(),"|"));
+		System.out.println(
+				"|------------------------------------------------------------------------------------------------------------|");
+		System.out.printf(String.format("%5s %-22s %-7s %-9s %5s %4s %-22s %-7s %-9s %11s", "|1 - ",
+				this.getMonstro().getAtaque(this.getMonstroAtualId(), 0).getNome(), " Tipo: ",
+				this.getMonstro().getAtaque(this.getMonstroAtualId(), 0).getTipo().getTipo(), "  |  ", "2 - ",
+				this.getMonstro().getAtaque(this.getMonstroAtualId(), 1).getNome(), " Tipo: ",
+				this.getMonstro().getAtaque(this.getMonstroAtualId(), 1).getTipo().getTipo(), "|"));
 		System.out.printf("\n");
-		System.out.printf(String.format("%5s %-22s %-7s %-9s %5s %4s %-22s %-7s %-9s %6s %2d %1s","|3 - ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 2).getNome()
-		," Tipo: ",this.getMonstro().getAtaque(this.getMonstroAtualId(), 2).getTipo().getTipo(),"  |  "
-		,"4 - ",this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getNome()
-		," Tipo: ",this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getTipo().getTipo()
-		," PP: ",this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getEnergia(),"|"));
-		System.out.println("\n|------------------------------------------------------------------------------------------------------------|");
-				
-		
+		System.out.printf(String.format("%5s %-22s %-7s %-9s %5s %4s %-22s %-7s %-9s %6s %2d %1s", "|3 - ",
+				this.getMonstro().getAtaque(this.getMonstroAtualId(), 2).getNome(), " Tipo: ",
+				this.getMonstro().getAtaque(this.getMonstroAtualId(), 2).getTipo().getTipo(), "  |  ", "4 - ",
+				this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getNome(), " Tipo: ",
+				this.getMonstro().getAtaqueCarregado(this.getMonstroAtualId()).getTipo().getTipo(), " PP: ",
+				this.getMonstro().getAtaqueCarregadoEnergia(this.getMonstroAtualId()), "|"));
+		System.out.println(
+				"\n|------------------------------------------------------------------------------------------------------------|");
+
 	}
 }

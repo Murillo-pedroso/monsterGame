@@ -65,7 +65,8 @@ public class Combate {
         System.out.printf("| "+String.format("%8s ", "HP   "));
         resultado = atacante.getMonstro().getVidaMax(atacante.getMonstroAtualId())/10;
 
-        for ( i = 0; i < Math.floor((atacante.getMonstro().getVida(atacante.getMonstroAtualId())/resultado)); i++) {           
+        for ( i = 0; i < Math.floor((atacante.getMonstro().getVida(atacante.getMonstroAtualId())/resultado)); i++) {        
+
             System.out.printf("▓");
         }
         for ( i = 0; i < 10-Math.floor((atacante.getMonstro().getVida(atacante.getMonstroAtualId())/resultado)); i++) {
@@ -84,7 +85,7 @@ public class Combate {
     public double calculaAtaque(Treinador atacante,Treinador defensor,double golpeEscolhido){
         //DANO = +((a.atk * (b.pdef / 2)) * (20 + a.str) / 20)/200 -->https://centrorpg.com/index.php?topic=19931.0
             
-        return (+(Math.round((golpeEscolhido * (defensor.getMonstro().getDefesa(defensor.getMonstroAtualId() / 2)) * (20 + atacante.getMonstro().getForca(atacante.getMonstroAtualId()) /20)))/200));
+        return (Math.round((golpeEscolhido * (defensor.getMonstro().getDefesa(defensor.getMonstroAtualId() / 2)) * (20 + atacante.getMonstro().getForca(atacante.getMonstroAtualId()) /20)))/200);
     }
     
     

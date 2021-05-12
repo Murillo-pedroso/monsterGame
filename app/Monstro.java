@@ -9,6 +9,7 @@ public class Monstro {
     private double[] velocidade;
     private Ataque[][] ataques;
     private AtaqueCarregado[] ataqueCarregado;
+    private int[] ataqueCarregadoEnergia;
     private double[] vidaMax;
     private int pos = 0;
     private int limiteMonstro = 18;
@@ -25,6 +26,7 @@ public class Monstro {
         this.ataques = new Ataque[this.limiteMonstro][3];
         this.vidaMax = new double[this.limiteMonstro];
         this.ataqueCarregado = new AtaqueCarregado[this.limiteMonstro];
+        this.ataqueCarregadoEnergia = new int[this.limiteMonstro];
 
     }
 
@@ -44,6 +46,7 @@ public class Monstro {
         this.ataques[this.pos][2] = ataqueDois;
         this.vidaMax[this.pos] = vida;
         this.ataqueCarregado[this.pos] = ataqueCarregado;
+        this.ataqueCarregadoEnergia[this.pos] = ataqueCarregado.getEnergia();
         this.pos++;
     }
 
@@ -88,13 +91,6 @@ public class Monstro {
         return this.pos;
     }
 
-    /*
-     * esses metodos devem ser feitos no treinador eu acho public void
-     * diminuiVida(double dano){ int intDano = (int) dano; if (this.estaVivo()) {
-     * vida -= intDano; } } public void aumentaVida(int ganho){ int auxVida = vida +
-     * ganho; if (auxVida <= vidaMax) vida = auxVida; else vida = vidaMax; } public
-     * boolean estaVivo() { if (vida > 0) return true; return false; }
-     */
     // Métodos relacionados aos ataques do pokémon
     public Ataque getAtaque(int i, int num) {
         return this.ataques[i][num];
@@ -102,6 +98,13 @@ public class Monstro {
 
     public AtaqueCarregado getAtaqueCarregado(int i) {
         return this.ataqueCarregado[i];
+    }
+
+    public int getAtaqueCarregadoEnergia(int i){
+        return this.ataqueCarregadoEnergia[i];
+    }
+    public void setAtaqueCarregadoEnergia(int i, int energia){
+        this.ataqueCarregadoEnergia[i]=energia;
     }
 
     public Ataque[] getListaAtk(int i) {
@@ -116,23 +119,6 @@ public class Monstro {
         System.out.println("1 - " + this.ataques[i][0].getNome() + "\t2 - " + this.ataques[i][1].getNome() + "3 - "
                 + this.ataques[i][2].getNome() + "\t4 - " + this.ataqueCarregado[i].getNome());
 
-    }
-
-    public int associaTipo(TipoElemento tipo2) {
-        if (tipo2.compareTo("Agua") == 0)
-            return 0;
-        else if (tipo2.compareTo("Fogo") == 0)
-            return 1;
-        else if (tipo2.compareTo("Terra") == 0)
-            return 2;
-        else if (tipo2.compareTo("Lutador") == 0)
-            return 3;
-        else if (tipo2.compareTo("Eletrico") == 0)
-            return 4;
-        else if (tipo2.compareTo("Gelo") == 0)
-            return 5;
-        else
-            return -1;
     }
 
     public void imprime() {
@@ -153,18 +139,6 @@ public class Monstro {
         this.vida[indice] = novaVida;
     }
 
-    // public void Imprime(){
-    // System.out.println("ID: " + this.ID +
-    // "\nNome: " + this.nome +
-    // "\nTipo: " + this.tipo.descricao +
-    // "\nVida: " + this.vida +
-    // "\nForça: " + this.forca +
-    // "\nDefesa: " + this.defesa +
-    // "\nVelocidade: " + this.velocidade +
-    // "\nAtaque Principal: " + this.ataquePrincipal.getNome() +
-    // "\nAtaque Secundario: " + this.ataqueSecundario.getNome() +"\n");
-    //
-    //
-    // }
-
+   
 }
+

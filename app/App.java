@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class App {
 
@@ -12,15 +13,23 @@ public class App {
 		boolean vezTreinadorUm = true;
 		double danoTreinadorUm = 0;
 		double danoTreinadorDois = 0;
+		int escolhaAtaqueTreinadorUm = 0;
+		int escolhaAtaqueTreinadorDois = 0;
 		int navegacaoMenu;
+		int trocouUm = 0;
+		int trocouDois = 0;
+		int test = 0;
+		int acabou = 0;
 
+		Random aleatorio = new Random();
 		Scanner leitura = new Scanner(System.in);
 		Treinador treinadorUm = new Treinador();
 		Treinador treinadorDois = new Treinador();
 		Monstro listaMonstro = new Monstro();
-
+		TipoElemento comparaVantagem = new TipoElemento();
 		Menu menuInteracao = new Menu();
 		Combate combate = new Combate();
+		Treinador vencedor = new Treinador();
 
 		TipoElemento agua = new TipoElemento(1, "AGUA");
 		TipoElemento fogo = new TipoElemento(2, "FOGO");
@@ -59,7 +68,7 @@ public class App {
 		AtaqueCarregado escuridao = new AtaqueCarregado("Escuridao", sombrio, 8, 5, Efeito.NULO);
 		AtaqueCarregado bolaSombria = new AtaqueCarregado("Bola Sombria", fantasma, 15, 2, Efeito.NULO);
 		AtaqueCarregado antonioNunes = new AtaqueCarregado("Antonio Nunes", lutador, 12, 2, Efeito.NULO);
-		AtaqueCarregado desmoronamento = new AtaqueCarregado("Desmoronamento", pedra, 8, 7, Efeito.NULO);
+		AtaqueCarregado desmoronamento = new AtaqueCarregado("Desmoronamento", pedra, 8, 4, Efeito.NULO);
 		AtaqueCarregado terremoto = new AtaqueCarregado("Terremoto", terra, 10, 4, Efeito.NULO);
 		AtaqueCarregado barrigada = new AtaqueCarregado("Barrigada", normal, 12, 3, Efeito.ATORDOADO);
 		AtaqueCarregado hiperFeixe = new AtaqueCarregado("Hiper Feixe", normal, 17, 1, Efeito.NULO);
@@ -88,7 +97,7 @@ public class App {
 				antonioNunes);
 		listaMonstro.add(7, "Encantados", planta, fada, 25, 15, 35, 25, tiroVenenoso, cantoMagico, raioPsiquico,
 				hiperFeixe);
-		listaMonstro.add(8, "Gorjala", pedra, nulo, 45, 45, 9, 1, arremecoDePedra, rosnado, ataqueMalandro,
+		listaMonstro.add(8, "Gorjala", pedra, nulo, 40, 36, 10, 5, arremecoDePedra, rosnado, ataqueMalandro,
 				desmoronamento);
 		listaMonstro.add(9, "Homem do Saco", normal, nulo, 25, 25, 10, 40, ataqueMalandro, mordida, voadora, barrigada);
 		listaMonstro.add(10, "Iara", agua, fada, 35, 15, 20, 30, esguichoDeAgua, cantoMagico, mordida, alagamento);
@@ -131,26 +140,26 @@ public class App {
 									if (escolhaAtaque < 1 || escolhaAtaque > 4) {
 										System.out.println("Esse ataque não existe...");
 									}
-									if (treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId())
-											.getEnergia() < 1) {
+									if (treinadorUm.getMonstro()
+											.getAtaqueCarregadoEnergia(treinadorUm.getMonstroAtualId()) < 1
+											&& escolhaAtaque == 4) {
 										System.out.println("Ataque carregado sem energia. Use outro ataque.");
+										Thread.sleep(1000);
 										escolhaAtaque = 5;
 
 									}
 								} while (escolhaAtaque < 1 || escolhaAtaque > 4);
 								if (escolhaAtaque != 4) {
-									modificadorDano = listaMonstro
-											.getAtaque(treinadorUm.getMonstroAtualId(), (escolhaAtaque - 1)).getDano();
-								} else {
-									modificadorDano = listaMonstro.getAtaqueCarregado(treinadorUm.getMonstroAtualId())
-											.getDano();
+									modificadorDano = treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(), escolhaAtaque-1).getDano();
 
-									treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId())
-											.setEnergia(treinadorUm.getMonstro()
-													.getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getEnergia()
-													- 1);
+								} else {
+									modificadorDano = treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getDano();
+									System.out.println(modificadorDano);
+
+									treinadorUm.diminuiEnergia();
 								}
 								danoTreinadorUm = combate.calculaAtaque(treinadorUm, treinadorDois, modificadorDano);
+								escolhaAtaqueTreinadorUm = escolhaAtaque;
 							} else {
 								do {
 									combate.imprimeCombateMenu(treinadorDois, treinadorUm, turno);
@@ -160,39 +169,41 @@ public class App {
 									if (escolhaAtaque < 1 || escolhaAtaque > 4) {
 										System.out.println("Esse ataque não existe...");
 									}
-									if (treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId())
-											.getEnergia() < 1 && escolhaAtaque == 4) {
+
+									if (treinadorDois.getMonstro()
+											.getAtaqueCarregadoEnergia(treinadorDois.getMonstroAtualId()) < 1
+											&& escolhaAtaque == 4) {
 										System.out.println("Ataque carregado sem energia. Use outro ataque.");
+										Thread.sleep(1000);
 										escolhaAtaque = 5;
 
 									}
 								} while (escolhaAtaque < 1 || escolhaAtaque > 4);
 								if (escolhaAtaque != 4) {
-									modificadorDano = listaMonstro
-											.getAtaque(treinadorDois.getMonstroAtualId(), (escolhaAtaque - 1))
-											.getDano();
+									modificadorDano = treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(), escolhaAtaque-1).getDano();
 								} else {
-									modificadorDano = listaMonstro.getAtaqueCarregado(treinadorDois.getMonstroAtualId())
-											.getDano();
+									modificadorDano = treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getDano();
+									treinadorDois.diminuiEnergia();
 
-									treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId())
-											.setEnergia(treinadorDois.getMonstro()
-													.getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getEnergia()
-													- 1);
 								}
 								danoTreinadorDois = combate.calculaAtaque(treinadorDois, treinadorUm, modificadorDano);
+								escolhaAtaqueTreinadorDois = escolhaAtaque;
 
 							}
 							break;
 						case 2:
+
 							break;
 						case 3:
 							if (vezTreinadorUm) {
+
 								combate.imprimeCombateMenu(treinadorUm, treinadorDois, turno);
 								treinadorUm.mudaMonstroAtual();
+								trocouUm = 1;
 							} else {
 								combate.imprimeCombateMenu(treinadorDois, treinadorUm, turno);
 								treinadorDois.mudaMonstroAtual();
+								trocouDois = 1;
 							}
 							break;
 						case 4:
@@ -205,19 +216,255 @@ public class App {
 						default:
 							break;
 					}
-
+					String nomeAtaqueUm;
+					String nomeAtaqueDois;
 					if (vezTreinadorUm) {
 						vezTreinadorUm = false;
 					} else {
-						
-						System.out.println("Calculou o dano: \nJogador 1 = " + danoTreinadorUm + "\nJogador 2 = "
-								+ danoTreinadorDois);
-						System.in.read();
+
+						if (escolhaAtaqueTreinadorUm != 4) {
+							danoTreinadorUm = danoTreinadorUm
+									* comparaVantagem.vantagem(
+											treinadorUm.getMonstro()
+													.getAtaque(treinadorUm.getMonstroAtualId(),
+															escolhaAtaqueTreinadorUm - 1)
+													.getTipo().getTipo(),
+											treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId())
+													.getTipo())
+									* comparaVantagem.vantagem(
+											treinadorUm.getMonstro()
+													.getAtaque(treinadorUm.getMonstroAtualId(),
+															escolhaAtaqueTreinadorUm - 1)
+													.getTipo().getTipo(),
+											treinadorDois.getMonstro()
+													.getTipoSecundario(treinadorDois.getMonstroAtualId()).getTipo());
+							nomeAtaqueUm = treinadorUm.getMonstro()
+									.getAtaque(treinadorUm.getMonstroAtualId(), escolhaAtaqueTreinadorUm - 1).getNome();
+
+						} else {
+							danoTreinadorUm = danoTreinadorUm
+									* comparaVantagem.vantagem(
+											treinadorUm
+													.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId())
+													.getTipo().getTipo(),
+											treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId())
+													.getTipo())
+									* comparaVantagem.vantagem(
+											treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId())
+													.getTipo().getTipo(),
+											treinadorDois.getMonstro()
+													.getTipoSecundario(treinadorDois.getMonstroAtualId()).getTipo());
+							nomeAtaqueUm = treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId())
+									.getNome();
+						}
+
+						if (escolhaAtaqueTreinadorDois != 4) {
+							danoTreinadorDois = danoTreinadorDois
+									* comparaVantagem.vantagem(
+											treinadorDois.getMonstro()
+													.getAtaque(treinadorDois.getMonstroAtualId(),
+															escolhaAtaqueTreinadorDois - 1)
+													.getTipo().getTipo(),
+											treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo())
+									* comparaVantagem.vantagem(
+											treinadorDois.getMonstro()
+													.getAtaque(treinadorDois.getMonstroAtualId(),
+															escolhaAtaqueTreinadorDois - 1)
+													.getTipo().getTipo(),
+											treinadorUm.getMonstro().getTipoSecundario(treinadorUm.getMonstroAtualId())
+													.getTipo());
+							nomeAtaqueDois = treinadorDois.getMonstro()
+									.getAtaque(treinadorDois.getMonstroAtualId(), escolhaAtaqueTreinadorDois - 1)
+									.getNome();
+						} else {
+							danoTreinadorDois = danoTreinadorDois
+									* comparaVantagem
+											.vantagem(
+													treinadorDois.getMonstro()
+															.getAtaqueCarregado(treinadorDois.getMonstroAtualId())
+															.getTipo().getTipo(),
+													treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId())
+															.getTipo())
+									* comparaVantagem.vantagem(treinadorDois.getMonstro()
+											.getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),
+											treinadorUm.getMonstro().getTipoSecundario(treinadorUm.getMonstroAtualId())
+													.getTipo());
+							nomeAtaqueDois = treinadorDois.getMonstro()
+									.getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getNome();
+						}
+						//atacar
+						if (trocouUm == 0 && trocouDois == 0) {
+
+							if (treinadorUm.getMonstro().getVelocidade(treinadorUm.getMonstroAtualId()) > treinadorDois.getMonstro().getVelocidade(treinadorDois.getMonstroAtualId())) {
+								
+								System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+								if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+								Thread.sleep(1500);
+
+								if (!treinadorDois.diminuiVida(danoTreinadorUm)) {
+									System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId())+ " usou " + nomeAtaqueDois);
+
+									if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+									else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+									treinadorUm.diminuiVida(danoTreinadorDois);
+									Thread.sleep(1500);
+								}
+							} else if (treinadorUm.getMonstro().getVelocidade(treinadorUm.getMonstroAtualId()) < treinadorDois.getMonstro().getVelocidade(treinadorDois.getMonstroAtualId())) {
+								System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId())+ " usou " + nomeAtaqueDois);
+								if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+								else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+								Thread.sleep(1500);
+								if (!treinadorUm.diminuiVida(danoTreinadorDois)) {
+									System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+									if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+									else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+									treinadorDois.diminuiVida(danoTreinadorUm);
+									Thread.sleep(1500);
+								}
+
+							} else {
+								if (treinadorUm.getMonstro().getForca(treinadorUm.getMonstroAtualId()) > treinadorDois.getMonstro().getForca(treinadorDois.getMonstroAtualId())) {
+									System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+									if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+									else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+									Thread.sleep(1500);
+									if (!treinadorDois.diminuiVida(danoTreinadorUm)) {
+										System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId())+ " usou " + nomeAtaqueDois);
+
+										if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+										else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+										treinadorUm.diminuiVida(danoTreinadorDois);
+										Thread.sleep(1500);
+									}
+								} else if (treinadorUm.getMonstro().getForca(treinadorUm.getMonstroAtualId()) < treinadorDois.getMonstro().getForca(treinadorDois.getMonstroAtualId())) {
+									System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId())+ " usou " + nomeAtaqueDois);
+									if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());			
+									else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+									Thread.sleep(1500);
+									if (!treinadorUm.diminuiVida(danoTreinadorDois)) {
+										System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+										if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+										else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+										treinadorDois.diminuiVida(danoTreinadorUm);
+										Thread.sleep(1500);
+									}
+								} else {
+									if (treinadorUm.getMonstro().getDefesa(treinadorUm.getMonstroAtualId()) > treinadorDois.getMonstro().getDefesa(treinadorDois.getMonstroAtualId())) {
+										System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+										if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+										else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+										Thread.sleep(1500);
+										if (!treinadorDois.diminuiVida(danoTreinadorUm)) {
+											System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId()) + " usou " + nomeAtaqueDois);
+											if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+											else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+											treinadorUm.diminuiVida(danoTreinadorDois);
+											Thread.sleep(1500);
+										}
+									} else if (treinadorUm.getMonstro().getDefesa(treinadorUm.getMonstroAtualId()) < treinadorDois.getMonstro().getDefesa(treinadorDois.getMonstroAtualId())) {
+										System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId())+ " usou " + nomeAtaqueDois);
+										if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+										else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+										Thread.sleep(1500);
+										if (!treinadorUm.diminuiVida(danoTreinadorDois)) {
+											System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+											if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+											else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+											Thread.sleep(1500);
+											treinadorDois.diminuiVida(danoTreinadorUm);
+										}
+									} else {
+										int valor = aleatorio.nextInt(2) + 1;
+										if (valor == 1) {
+											System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+											if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+											else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+											Thread.sleep(1500);
+											if (!treinadorDois.diminuiVida(danoTreinadorUm)) {
+												System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId()) + " usou " + nomeAtaqueDois);
+												if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+												else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+												treinadorUm.diminuiVida(danoTreinadorDois);
+												Thread.sleep(1500);
+											}
+										} else {
+											System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId()) + " usou " + nomeAtaqueDois);
+											if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+											else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+											Thread.sleep(1500);
+											if (!treinadorUm.diminuiVida(danoTreinadorDois)) {
+												System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId()) + " usou " + nomeAtaqueUm);treinadorDois.diminuiVida(danoTreinadorUm);
+												if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+												else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+												Thread.sleep(1500);
+											}
+										}
+									}
+								}
+
+							}
+						} else if (trocouUm == 0 && trocouDois == 1) {
+							System.out.println(treinadorUm.getMonstro().getNome(treinadorUm.getMonstroAtualId())+ " usou " + nomeAtaqueUm);
+							if(escolhaAtaqueTreinadorUm!=4)comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(),escolhaAtaqueTreinadorUm - 1).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+							else comparaVantagem.imprimeVantagem(treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getTipo().getTipo(),treinadorDois.getMonstro().getTipo(treinadorDois.getMonstroAtualId()).getTipo());
+								
+							treinadorDois.diminuiVida(danoTreinadorUm);
+						} else {
+							System.out.println(treinadorDois.getMonstro().getNome(treinadorDois.getMonstroAtualId())+ " usou " + nomeAtaqueDois);
+							if(escolhaAtaqueTreinadorDois!=4)comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(),escolhaAtaqueTreinadorDois - 1).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());				
+							else comparaVantagem.imprimeVantagem(treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getTipo().getTipo(),treinadorUm.getMonstro().getTipo(treinadorUm.getMonstroAtualId()).getTipo());
+
+							treinadorUm.diminuiVida(danoTreinadorDois);
+						}
 						vezTreinadorUm = true;
 						turno++;
+						trocouUm = 0;
+						trocouDois = 0;
+
+					}
+					if (treinadorDois.getCorreu() == true) {
+						vencedor = treinadorUm;
+						acabou = 1;
 					}
 
-				} while (treinadorUm.ativo() || treinadorDois.ativo());
+					if (treinadorDois.getDerrotado() == true) {
+						vencedor = treinadorUm;
+						acabou = 1;
+					}
+
+					if (treinadorUm.getCorreu() == true) {
+						vencedor = treinadorDois;
+						acabou = 1;
+					}
+
+					if (treinadorUm.getDerrotado() == true) {
+						vencedor = treinadorDois;
+						acabou = 1;
+					}
+
+				} while (acabou == 0);
+				System.out.println("Parabéns treinador " + vencedor.getNome()
+						+ " você foi o grande vencedor!! \nEssa é sua equipe da vitória ---> ");
+				vencedor.getMonstro().imprime();
+				System.out.println(" Sua equipe teve um desempenha excelente!\nAperte enter para voltar ao menu: ");
+				System.in.read();
 			}
 		} while (navegacaoMenu != 3);
 
