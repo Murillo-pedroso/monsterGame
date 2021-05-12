@@ -15,4 +15,7 @@ public enum Efeito {
         this.descricao = descricao;
         this.chanceAcontecer = chanceAcontecer;
     }
+    public String getNome(){
+        return this.nome;
+    }
 }

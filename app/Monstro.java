@@ -13,6 +13,8 @@ public class Monstro {
     private double[] vidaMax;
     private int pos = 0;
     private int limiteMonstro = 18;
+    private boolean[] sobEfeito;
+    private int[] sobEfeitoRoundTermina;
 
     public Monstro() {
         this.id = new int[this.limiteMonstro];
@@ -27,6 +29,8 @@ public class Monstro {
         this.vidaMax = new double[this.limiteMonstro];
         this.ataqueCarregado = new AtaqueCarregado[this.limiteMonstro];
         this.ataqueCarregadoEnergia = new int[this.limiteMonstro];
+        this.sobEfeito = new boolean[this.limiteMonstro];
+        this.sobEfeitoRoundTermina = new int[this.limiteMonstro];
 
     }
 
@@ -47,9 +51,23 @@ public class Monstro {
         this.vidaMax[this.pos] = vida;
         this.ataqueCarregado[this.pos] = ataqueCarregado;
         this.ataqueCarregadoEnergia[this.pos] = ataqueCarregado.getEnergia();
+        this.sobEfeito[this.pos] = false;
+        this.sobEfeitoRoundTermina[this.pos]=0;
         this.pos++;
     }
+    public boolean getSobEfeito(int i){
+        return this.sobEfeito[i];
+    }
+    public void setSobEfeito(int i,boolean op){
+        this.sobEfeito[i] = op;
+    }
 
+    public int getSobEfeitoRoundTermina(int i){
+        return this.sobEfeitoRoundTermina[i];
+    }
+    public void setSobEfeitoRoundTermina(int i, int round){
+        this.sobEfeitoRoundTermina[i]=round;
+    }
     public int getId(int i) {
         return this.id[i];
     }
@@ -122,10 +140,18 @@ public class Monstro {
     }
 
     public void imprime() {
+        System.out.println(String.format("%3s  %1s  %13s %7s %1s %12s %5s","ID","|","Nome","","|","Tipo","")+
+        "\n-----|------------------------|----------------------");
+        
         for (int i = 0; i < this.pos; i++) {
-            System.out.println(String.format("%3s  %1s  %21s %1s %10s %1s %-10s", this.id[i], "|", this.nome[i],"|",this.tipo[i].getTipo(),"/",this.tipoSecundario[i].getTipo()));
+           
+            System.out.printf(String.format("%3s  %1s  %-21s %1s %8s ", this.id[i], "|", this.nome[i],"|",this.tipo[i].getTipo()));
+            if(this.tipoSecundario[i].getTipo().equals("")==false){
+                System.out.printf(String.format("%-1s %-9s ", "/",this.tipoSecundario[i].getTipo()));  
+            }
+            System.out.printf("\n");
         }
-
+       
     }
 
     public void imprimeByIndice(int i) {
