@@ -30,11 +30,19 @@ public class Menu {
                     verificaEscolha.escolhaMonstro(treinadorDois, listaMonstro);
                     break;
                 case 2:
-                    System.out.println("Regras do jogo: ");
-                    System.out.println("1- O mesmo jogador não poderá escolher o mesmo monstro");
-                    System.out.println("2- Existem as prioridades de desempate para quem vai atacar primeiro");
-                    System.out.println("3- O jogador 2 não tem desvantagem por ser 2\n");
-                    System.out.println("Pressione qualquer tecla para continuar...");
+                    System.out.println("                   Regras do jogo                        \n");
+                    System.out.println("1- Cada jogador deverá escolher 3 montros para a batalha;\n");
+                    System.out.println("2- Os dois jogadores podem selecionar os mesmos montros; \n");
+                    System.out.println("3- Um jogador não poderá escolher o mesmo monstro mais     ");
+                    System.out.println("    de uma vez;                                          \n");
+                    System.out.println("4- A batalha deve ser efetuada em turnos: onde o jogador   ");
+                    System.out.println("    1 escolhe sua ação, depois disso o jogador 2 escolhe   ");
+                    System.out.println("    sua ação e por fim as duas ações são executadas        ");
+                    System.out.println("    conforme as regras de prioridade;                    \n"); 
+                    System.out.println("5- Prioridades de desempate para quem vai atacar primeiro: ");
+                    System.out.println("    Monstros com maior velocidade atacam primeiro;       \n");
+                    System.out.println("6- O jogador 2 não tem desvantagem por ser 2;            \n");
+                    System.out.println("Pressione a tecla enter para continuar...                  ");
                     System.in.read();//https://www.guj.com.br/t/como-faco-pra-pausar-a-execucao/32986/6
                     //Thread.sleep(500);//https://www.javatpoint.com/sleep()-method
 

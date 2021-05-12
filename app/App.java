@@ -18,7 +18,6 @@ public class App {
 		int navegacaoMenu;
 		int trocouUm = 0;
 		int trocouDois = 0;
-		int test = 0;
 		int acabou = 0;
 
 		Random aleatorio = new Random();
@@ -463,7 +462,7 @@ public class App {
 				System.out.println("Parabéns treinador " + vencedor.getNome()
 						+ " você foi o grande vencedor!! \nEssa é sua equipe da vitória ---> ");
 				vencedor.getMonstro().imprime();
-				System.out.println(" Sua equipe teve um desempenha excelente!\nAperte enter para voltar ao menu: ");
+				System.out.println(" Sua equipe teve um desempenho excelente!\nAperte enter para voltar ao menu: ");
 				System.in.read();
 			}
 		} while (navegacaoMenu != 3);
