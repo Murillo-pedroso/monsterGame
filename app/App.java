@@ -120,7 +120,12 @@ public class App {
 				System.out.println("\n\n                       >>>> Que o combate comece <<<<");
 
 				do {
+<<<<<<< HEAD
 
+=======
+					volta=0;
+					do{
+>>>>>>> parent of 2439937 (terminei de arrumar o efeito dormindo)
 					if (vezTreinadorUm)
 						escolha = combate.combateMenu(treinadorUm, treinadorDois, turno);
 					else
@@ -134,6 +139,7 @@ public class App {
 								do {
 									combate.imprimeCombateMenu(treinadorUm, treinadorDois, turno);
 									treinadorUm.ataques();
+<<<<<<< HEAD
 									System.out.println("Escolha um ataque: ");
 									escolhaAtaque = leitura.nextInt();
 									if (escolhaAtaque < 1 || escolhaAtaque > 4) {
@@ -143,6 +149,12 @@ public class App {
 											.getAtaqueCarregadoEnergia(treinadorUm.getMonstroAtualId()) < 1
 											&& escolhaAtaque == 4) {
 										System.out.println("Ataque carregado sem energia. Use outro ataque.");
+=======
+									System.out.println("Escolha um ataque:      -> Para voltar use a tecla 8");
+									escolhaAtaque = leitura.nextInt();
+									if(escolhaAtaque==8){
+										System.out.println("Retornando");
+>>>>>>> parent of 2439937 (terminei de arrumar o efeito dormindo)
 										Thread.sleep(1000);
 										escolhaAtaque = 5;
 
