@@ -63,13 +63,13 @@ public class App {
 		AtaqueCarregado sementesVenenosas = new AtaqueCarregado("Sementes Venenosas", planta, 10, 4, Efeito.ENVENENADO);
 		AtaqueCarregado pulsoDoDragao = new AtaqueCarregado("Pulso do Dragao", dragao, 12, 4, Efeito.NULO);
 		AtaqueCarregado confusaoMental = new AtaqueCarregado("Confusao Mental", psiquico, 5, 4, Efeito.ATORDOADO);
-		AtaqueCarregado bonsSonhos = new AtaqueCarregado("Bons Sonhos", fada, 0, 2, Efeito.DORMINDO);
+		AtaqueCarregado bonsSonhos = new AtaqueCarregado("Bons Sonhos", fada, 0, 5, Efeito.DORMINDO);
 		AtaqueCarregado escuridao = new AtaqueCarregado("Escuridao", sombrio, 8, 5, Efeito.NULO);
 		AtaqueCarregado bolaSombria = new AtaqueCarregado("Bola Sombria", fantasma, 15, 2, Efeito.NULO);
 		AtaqueCarregado antonioNunes = new AtaqueCarregado("Antonio Nunes", lutador, 12, 2, Efeito.NULO);
 		AtaqueCarregado desmoronamento = new AtaqueCarregado("Desmoronamento", pedra, 8, 4, Efeito.NULO);
 		AtaqueCarregado terremoto = new AtaqueCarregado("Terremoto", terra, 10, 4, Efeito.NULO);
-		AtaqueCarregado barrigada = new AtaqueCarregado("Barrigada", normal, 10, 3, Efeito.ATORDOADO);
+		AtaqueCarregado barrigada = new AtaqueCarregado("Barrigada", normal, 12, 3, Efeito.ATORDOADO);
 		AtaqueCarregado hiperFeixe = new AtaqueCarregado("Hiper Feixe", normal, 17, 1, Efeito.NULO);
 
 		/*
@@ -96,7 +96,7 @@ public class App {
 				antonioNunes);
 		listaMonstro.add(7, "Encantados", planta, fada, 25, 15, 35, 25, tiroVenenoso, cantoMagico, raioPsiquico,
 				hiperFeixe);
-		listaMonstro.add(8, "Gorjala", pedra, nulo, 40, 38, 15, 7, arremecoDePedra, rosnado, ataqueMalandro,
+		listaMonstro.add(8, "Gorjala", pedra, nulo, 40, 36, 10, 5, arremecoDePedra, rosnado, ataqueMalandro,
 				desmoronamento);
 		listaMonstro.add(9, "Homem do Saco", normal, nulo, 25, 25, 10, 40, ataqueMalandro, mordida, voadora, barrigada);
 		listaMonstro.add(10, "Iara", agua, fada, 35, 15, 20, 30, esguichoDeAgua, cantoMagico, mordida, alagamento);
@@ -120,9 +120,8 @@ public class App {
 				System.out.println("\n\n                       >>>> Que o combate comece <<<<");
 
 				do {
-					
+					volta=0;
 					do{
-						volta=0;
 					if (vezTreinadorUm)
 						escolha = combate.combateMenu(treinadorUm, treinadorDois, turno);
 					else
@@ -136,16 +135,8 @@ public class App {
 								do {
 									combate.imprimeCombateMenu(treinadorUm, treinadorDois, turno);
 									treinadorUm.ataques();
-									if (treinadorUm.getMonstro().getSobEfeitoRoundTermina(treinadorUm.getMonstroAtualId())>turno){
-										treinadorUm.getMonstro().setSobEfeito(treinadorUm.getMonstroAtualId(), false);
-										System.out.println("Seu monstro está dormindo e não pôde atacar ZZZzzz");
-										System.out.println("Retornando ao menu...");
-										Thread.sleep(1000);
-										escolhaAtaque=8;
-									}else{
 									System.out.println("Escolha um ataque:      -> Para voltar use a tecla 8");
 									escolhaAtaque = leitura.nextInt();
-									}
 									if(escolhaAtaque==8){
 										System.out.println("Retornando");
 										Thread.sleep(1000);
@@ -182,25 +173,9 @@ public class App {
 							} else {
 								do {
 									combate.imprimeCombateMenu(treinadorDois, treinadorUm, turno);
-									treinadorDois.ataques();	
-									if (treinadorDois.getMonstro().getSobEfeitoRoundTermina(treinadorDois.getMonstroAtualId())>turno){
-										treinadorDois.getMonstro().setSobEfeito(treinadorDois.getMonstroAtualId(), false);
-										System.out.println("Seu monstro está dormindo e não pôde atacar ZZZzzz");
-										System.out.println("Retornando ao menu...");
-										Thread.sleep(1000);
-										escolhaAtaque=8;
-									}else{
-										System.out.println("Escolha um ataque:      -> Para voltar use a tecla 8");
-										escolhaAtaque = leitura.nextInt();
-									}							
-									
-									if(escolhaAtaque==8){
-										System.out.println("Retornando");
-										Thread.sleep(1000);
-										volta=1;
-										break;
-
-									}
+									treinadorDois.ataques();
+									System.out.println("Escolha um ataque: ");
+									escolhaAtaque = leitura.nextInt();
 									if (escolhaAtaque < 1 || escolhaAtaque > 4) {
 										System.out.println("Esse ataque não existe...");
 									}
@@ -214,7 +189,6 @@ public class App {
 
 									}
 								} while (escolhaAtaque < 1 || escolhaAtaque > 4);
-								if(volta==0){
 								if (escolhaAtaque != 4) {
 									modificadorDano = treinadorDois.getMonstro().getAtaque(treinadorDois.getMonstroAtualId(), escolhaAtaque-1).getDano();
 								} else {
@@ -224,23 +198,21 @@ public class App {
 								}
 								danoTreinadorDois = combate.calculaAtaque(treinadorDois, treinadorUm, modificadorDano);
 								escolhaAtaqueTreinadorDois = escolhaAtaque;
-							}
+
 							}
 							break;
 						case 2:
-							System.out.println("A bolsa está vazia.\nPressione enter para voltar...");
-							System.in.read();
-							volta=1;
+
 							break;
 						case 3:
 							if (vezTreinadorUm) {
 
 								combate.imprimeCombateMenu(treinadorUm, treinadorDois, turno);
-								volta = treinadorUm.mudaMonstroAtual();
+								treinadorUm.mudaMonstroAtual();
 								trocouUm = 1;
 							} else {
 								combate.imprimeCombateMenu(treinadorDois, treinadorUm, turno);
-								volta = treinadorDois.mudaMonstroAtual();
+								treinadorDois.mudaMonstroAtual();
 								trocouDois = 1;
 							}
 							break;
@@ -296,18 +268,6 @@ public class App {
 													.getTipoSecundario(treinadorDois.getMonstroAtualId()).getTipo());
 							nomeAtaqueUm = treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId())
 									.getNome();
-
-									if (treinadorUm.getMonstro().getAtaqueCarregado(treinadorUm.getMonstroAtualId()).getEfeito().getNome().equals("DORMINDO")) {
-										int sorteia = aleatorio.nextInt(100) + 1;
-
-										if (sorteia<=85){
-											System.out.println("O monstro inimigo esta dormindo...ZZzzz");
-											treinadorDois.getMonstro().setSobEfeito(treinadorDois.getMonstroAtualId(), true);
-											treinadorDois.getMonstro().setSobEfeitoRoundTermina(treinadorDois.getMonstroAtualId(), turno+3);
-										}
-
-										
-									}
 						}
 
 						if (escolhaAtaqueTreinadorDois != 4) {
@@ -343,33 +303,8 @@ public class App {
 													.getTipo());
 							nomeAtaqueDois = treinadorDois.getMonstro()
 									.getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getNome();
-									
-									if (treinadorDois.getMonstro().getAtaqueCarregado(treinadorDois.getMonstroAtualId()).getEfeito().getNome().equals("DORMINDO")) {
-										int sorteia = aleatorio.nextInt(100) + 1;
-
-										if (sorteia<=50){
-											System.out.println("O monstro inimigo esta dormindo...ZZzzz");
-											Thread.sleep(1000);
-											treinadorUm.getMonstro().setSobEfeito(treinadorUm.getMonstroAtualId(), true);
-											treinadorUm.getMonstro().setSobEfeitoRoundTermina(treinadorUm.getMonstroAtualId(), turno+3);
-										}else{
-											System.out.println("Seu monstro errou o golpe...");
-											Thread.sleep(1000);
-										}
-
-										
-									}
 						}
 						//atacar
-						if(treinadorDois.getMonstro().getSobEfeito(treinadorDois.getMonstroAtualId())==true){
-							System.out.println("Seu monstro está dormindo e não pôde atacar ZZZzzz");
-							trocouDois=1;
-						}
-						if(treinadorUm.getMonstro().getSobEfeito(treinadorUm.getMonstroAtualId())==true){
-							System.out.println("Seu monstro está dormindo e não pôde atacar ZZZzzz");
-							trocouUm=1;
-						}
-
 						if (trocouUm == 0 && trocouDois == 0) {
 
 							if (treinadorUm.getMonstro().getVelocidade(treinadorUm.getMonstroAtualId()) > treinadorDois.getMonstro().getVelocidade(treinadorDois.getMonstroAtualId())) {
