@@ -24,7 +24,6 @@ public class App {
 		Scanner leitura = new Scanner(System.in);
 		Treinador treinadorUm = new Treinador();
 		Treinador treinadorDois = new Treinador();
-		Treinador escolhaMonstro = new Treinador();
 		Monstro listaMonstro = new Monstro();
 		TipoElemento comparaVantagem = new TipoElemento();
 		Menu menuInteracao = new Menu();
@@ -116,7 +115,7 @@ public class App {
 		listaMonstro.add(17, "Alma de Gato", fogo, sombrio, 20, 50, 15, 15, rajadaDeFogo, rosnado, mordida, escuridao);
 
 		do {
-			navegacaoMenu = menuInteracao.menuInteracao(treinadorUm, treinadorDois, listaMonstro, escolhaMonstro);
+			navegacaoMenu = menuInteracao.menuInteracao(treinadorUm, treinadorDois, listaMonstro);
 			if (navegacaoMenu == 1) {
 				System.out.println("\n\n                       >>>> Que o combate comece <<<<");
 
