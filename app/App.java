@@ -19,7 +19,7 @@ public class App {
 		int trocouUm = 0;
 		int trocouDois = 0;
 		int acabou = 0;
-		int volta = 0;
+
 		Random aleatorio = new Random();
 		Scanner leitura = new Scanner(System.in);
 		Treinador treinadorUm = new Treinador();
@@ -120,8 +120,7 @@ public class App {
 				System.out.println("\n\n                       >>>> Que o combate comece <<<<");
 
 				do {
-					volta=0;
-					do{
+
 					if (vezTreinadorUm)
 						escolha = combate.combateMenu(treinadorUm, treinadorDois, turno);
 					else
@@ -135,29 +134,20 @@ public class App {
 								do {
 									combate.imprimeCombateMenu(treinadorUm, treinadorDois, turno);
 									treinadorUm.ataques();
-									System.out.println("Escolha um ataque:      -> Para voltar use a tecla 8");
+									System.out.println("Escolha um ataque: ");
 									escolhaAtaque = leitura.nextInt();
-									if(escolhaAtaque==8){
-										System.out.println("Retornando");
+									if (escolhaAtaque < 1 || escolhaAtaque > 4) {
+										System.out.println("Esse ataque não existe...");
+									}
+									if (treinadorUm.getMonstro()
+											.getAtaqueCarregadoEnergia(treinadorUm.getMonstroAtualId()) < 1
+											&& escolhaAtaque == 4) {
+										System.out.println("Ataque carregado sem energia. Use outro ataque.");
 										Thread.sleep(1000);
-										volta=1;
-										break;
+										escolhaAtaque = 5;
 
-									}																		
-								 		if (escolhaAtaque < 1 || escolhaAtaque > 4) {
-											System.out.println("Esse ataque não existe...");
-										}
-										if (treinadorUm.getMonstro()
-												.getAtaqueCarregadoEnergia(treinadorUm.getMonstroAtualId()) < 1
-												&& escolhaAtaque == 4) {
-											System.out.println("Ataque carregado sem energia. Use outro ataque.");
-											Thread.sleep(1000);
-											escolhaAtaque = 5;
-
-										}
-								
+									}
 								} while (escolhaAtaque < 1 || escolhaAtaque > 4);
-								if (volta==0) {
 								if (escolhaAtaque != 4) {
 									modificadorDano = treinadorUm.getMonstro().getAtaque(treinadorUm.getMonstroAtualId(), escolhaAtaque-1).getDano();
 
@@ -169,7 +159,6 @@ public class App {
 								}
 								danoTreinadorUm = combate.calculaAtaque(treinadorUm, treinadorDois, modificadorDano);
 								escolhaAtaqueTreinadorUm = escolhaAtaque;
-							}
 							} else {
 								do {
 									combate.imprimeCombateMenu(treinadorDois, treinadorUm, turno);
@@ -226,8 +215,6 @@ public class App {
 						default:
 							break;
 					}
-				}while(volta==1);
-				
 					String nomeAtaqueUm;
 					String nomeAtaqueDois;
 					if (vezTreinadorUm) {
