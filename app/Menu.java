@@ -7,7 +7,7 @@ public class Menu {
     }
 
     public int menuInteracao(Treinador treinadorUm, Treinador treinadorDois, Monstro listaMonstro) throws InterruptedException, IOException {
-        Escolha verificaEscolha = new Escolha();
+        Treinador verificaEscolha = new Treinador();
         Scanner leitura = new Scanner(System.in);
         int navegacaoMenu = 0;
 

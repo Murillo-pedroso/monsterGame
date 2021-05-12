@@ -528,7 +528,7 @@ public class App {
 					}
 
 				} while (acabou == 0);
-				System.out.println("Parabéns treinador " + vencedor.getNome()
+				System.out.println("\n\nParabéns treinador " + vencedor.getNome()
 						+ " você foi o grande vencedor!! \nEssa é sua equipe da vitória ---> ");
 				vencedor.getMonstro().imprime();
 				System.out.println(" Sua equipe teve um desempenho excelente!\nAperte enter para voltar ao menu: ");
