@@ -43,31 +43,76 @@ public class Treinador {
 		return this.derrotado;
 	}
 
-	public void mudaMonstroAtual() {
-		if (!imprimeMonstro())
-			return;
-		int erro = 0;
-		int i = 0;
-		if(temMonstroVivo()){
-		do {
-			erro = 0;
-			System.out.println("Escolhe monstro da lista");
-			Scanner sc = new Scanner(System.in);
-			 i = sc.nextInt();
-
-			if (i >= 3 || i < 0) {
-				System.out.println("Escolha invalida");
-				erro = 1;
-			}
-			if (monstro.getVida(i) <= 0) {
-				System.out.println("Monstro Derrotado [" + this.monstro.getNome(i) + "]");
-				erro = 1;
-			}
+	
+	public int mudaMonstroAtual() {
+			if (!imprimeMonstro())
+				
+				return 0;
+			int erro = 0;
+			int i = 0;
+			int retorno = 0;
+			if(temMonstroVivo()){
+			do {
+				erro = 0;
+				
+				System.out.println("Escolhe monstro da lista     -> Para voltar use a tecla 8");
+				Scanner sc = new Scanner(System.in);
+				 i = sc.nextInt();
+	
+				if(i!=8){
+					if (i >= 3 || i < 0) {
+						System.out.println("Escolha invalida");
+						erro = 1;
+					}
+					if (monstro.getVida(i) <= 0) {
+						System.out.println("Monstro Derrotado [" + this.monstro.getNome(i) + "]");
+						erro = 1;
+					}
+				
+				System.out.println("Monstro escolhido :" + this.monstro.getNome(i));
+				this.monstroAtualId = i;
+				retorno = 0;
+				}
+			
 		} while (erro != 0);
-		System.out.println("Monstro escolhido :" + this.monstro.getNome(i));
-		this.monstroAtualId = i;
-	}
-	}
+		if (i==8) {
+			retorno = 1;
+		}
+		}
+		return retorno;
+		}
+		
+		public void mudaMonstroAtualSemVolta() {
+			if (!imprimeMonstro())
+				return;
+			int erro = 0;
+			int i = 0;
+			
+			if(temMonstroVivo()){
+			do {
+				erro = 0;
+				System.out.println("Escolhe monstro da lista   ");
+				Scanner sc = new Scanner(System.in);
+				 i = sc.nextInt();
+				
+					if (i >= 3 || i < 0) {
+						System.out.println("Escolha invalida");
+						erro = 1;
+					}
+					if (monstro.getVida(i) <= 0) {
+						System.out.println("Monstro Derrotado [" + this.monstro.getNome(i) + "]");
+						erro = 1;
+					}
+				
+				System.out.println("Monstro escolhido :" + this.monstro.getNome(i));
+				this.monstroAtualId = i;
+				
+				
+		} while (erro != 0);
+		
+		}
+		
+		}
 
 	public boolean temMonstroVivo() {
 		boolean tem = false;
@@ -105,7 +150,7 @@ public class Treinador {
 		Thread.sleep(1000);
 		if (this.getMonstro().getVida(this.getMonstroAtualId()) <= 0) {
 			System.out.println(this.getMonstro().getNome(this.getMonstroAtualId())+ " foi desmaiado.Escolha outro para substitui-lo:");
-			mudaMonstroAtual();
+			mudaMonstroAtualSemVolta();
 			morreu = true;
 		}
 		return morreu;

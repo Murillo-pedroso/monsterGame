@@ -89,8 +89,7 @@ public class TipoElemento {
                     valorVantagem = 2;
                 if (tipoDefesa.equals("PSIQUICO"))
                     valorVantagem = 2;
-                if (tipoDefesa.equals("FANTASMA"))
-                    valorVantagem = 0.5;
+              
                 if (tipoDefesa.equals("SOMBRIO"))
                     valorVantagem = 0.5;
                 else
@@ -290,10 +289,7 @@ public class TipoElemento {
                     System.out.println("O GOLPE FOI SUPER EFETIVO");
                     Thread.sleep(1000);
                 }
-                if (tipoDefesa.equals("FANTASMA")) {
-                    System.out.println("O GOLPE NÃO FOI MUITO EFETIVO");
-                    Thread.sleep(1000);
-                }
+               
                 if (tipoDefesa.equals("SOMBRIO")) {
                     System.out.println("O GOLPE NÃO FOI MUITO EFETIVO");
                     Thread.sleep(1000);
